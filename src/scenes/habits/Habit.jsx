@@ -1,36 +1,32 @@
-// delete this and rename TempHabit
-import FlexBetween from "components/FlexBetween";
 import LinearProgressWithLabel from "components/LinearProgressWithLabel";
 import React, { useEffect, useState } from "react";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import {
   useTheme,
   Button,
   Checkbox,
-  Box,
   Typography,
   Stack,
+  Grid,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import {
-  selectAllhabits,
   selectHabitById,
-  selectHabitIds,
-  selectHabitsResult,
   useDeleteHabitMutation,
   useUpdateHabitMutation,
 } from "./habitsApiSlice";
-import { useNavigate } from "react-router-dom";
 
 /// should recieve the habit id
 const Habit = ({ habitId, week }) => {
+  const matches = useMediaQuery("(min-width:900px)");
   /// use selector to select the habit
   //console.log(habitId);
   const habit = useSelector((state) => selectHabitById(state, habitId));
   const { id, name, user, year } = habit;
   const today = new Date();
+  const todayString = today.toLocaleDateString("en-GB");
   const currentMonth = today.getMonth();
-  console.log("Year from the database");
-  console.log(year);
+
   const percent = year[12][currentMonth];
   const lastMonthPercent = year[12][currentMonth - 1];
   const daysInWeek = week.map((day) => day.fullDate);
@@ -53,15 +49,14 @@ const Habit = ({ habitId, week }) => {
     }
   );
 
-  const [updateHabit, { isLoading, isSuccess, isError, error }] =
-    useUpdateHabitMutation();
+  const [updateHabit, { isLoading, isSuccess }] = useUpdateHabitMutation();
+
   const [
     deleteHabit,
     { isSuccess: isDelSuccess, isError: isDelError, error: delerror },
   ] = useDeleteHabitMutation();
 
-  const navigate = useNavigate();
-  const handleEdit = () => navigate(`/habit/${habitId}`);
+  // const navigate = useNavigate();
   const handleComplete = (e) => setDate(e.target.value);
   const theme = useTheme();
 
@@ -91,8 +86,6 @@ const Habit = ({ habitId, week }) => {
   const getMonthStreak = (date) => {
     /// get the current month or the month from that date
     /// gte the lenght of the month
-    console.log("DATE INSIDE GET MONTH STREAK");
-    console.log(date);
 
     const month = currentMonth;
 
@@ -112,108 +105,144 @@ const Habit = ({ habitId, week }) => {
     deepCopyHabit.year[currentMonth].push(day.date);
 
     const percent = getMonthStreak(day.date);
-    console.log("PERCENT" + percent);
 
     deepCopyHabit.year[12][currentMonth] = percent;
 
     if (canSave) {
-      console.log("SENT");
-      console.log(id, name, user);
       await updateHabit({ id, name, user, year: deepCopyHabit.year });
     }
   };
 
   return (
-    <Box width={"100%"}>
-      <FlexBetween
-        alignItems={"center"}
-        m={"4px"}
-        sx={{
-          backgroundColor: theme.palette.secondary[300],
-          borderRadius: "4px",
-        }}
+    <Grid container rowSpacing={1}>
+      {/* NAME */}
+      <Grid
+        item
+        xs={matches ? 2 : 4}
+        borderTop={"#5F4126 solid 1px"}
+        borderBottom={"#5F4126 solid 1px"}
+        borderRight={"#5F4126 solid 1px"}
+        borderLeft={"#5F4126 solid 1px"}
       >
-        {/* NAME */}
-        <Box width="auto">
-          <Stack direction="column">
-            <Typography
-              variant="h4"
-              m={"4px"}
-              color={theme.palette.secondary[600]}
-              fontWeight="bold"
-            >
-              {habit.name}
-            </Typography>
-            <Typography m={"4px"} color={theme.palette.primary[700]}>
-              Last Month: {lastMonthPercent}
-            </Typography>
-            <Typography m={"4px"} color={theme.palette.primary[700]}>
-              This Month: {percent}
-            </Typography>
-          </Stack>
-        </Box>
-        {/* CHECKBOXES */}
         <Stack direction="column">
-          <Box
-            className="Checkbox box"
-            width="100%"
-            display={"flex"}
-            justifyContent={"center"}
-            marginTop={"5px"}
-            marginBottom={"5px"}
+          <Typography
+            fontSize={{ sm: "0.9rem", md: "1rem", lg: "1.3rem" }}
+            m={"4px"}
+            color={theme.palette.primary.main}
+            fontWeight="bold"
+            textAlign={"center"}
           >
-            <Stack className="secondBox" direction={"row"} spacing={4.8}>
-              {formattedDaysAndCompletions.map((day) => (
-                <Checkbox
-                  sx={{
-                    backgroundColor: theme.palette.secondary[500],
-                    "& .MuiSvgIcon-root": { fontSize: 28 },
-                  }}
-                  onChange={handleComplete}
-                  checked={day.completed}
-                  disabled={day.completed}
-                  value={day.date}
-                  onClick={(e) => onCheckBoxClicked(e, day)}
-                />
-              ))}
-            </Stack>
-          </Box>
-
-          {/* LINEAR PROGRESS BAR */}
-          <Box width="100%">
-            <LinearProgressWithLabel
-              value={percent}
-              sx={{
-                fontSize: 28,
-              }}
-            ></LinearProgressWithLabel>
-          </Box>
+            {habit.name}
+          </Typography>
         </Stack>
-        {/* DELETE BUTTON */}
-        <Box mr="5px">
-          <Stack direction="row" spacing={1}>
-            <Button
-              sx={{
-                backgroundColor: theme.palette.secondary[600],
-                color: theme.palette.secondary[100],
-              }}
-              disabled
-            >
-              UPDATE
-            </Button>
-            <Button
-              sx={{
-                backgroundColor: theme.palette.secondary[600],
-                color: theme.palette.secondary[100],
-              }}
-              onClick={onDeleteHabitClicked}
-            >
-              DELETE
-            </Button>
-          </Stack>
-        </Box>
-      </FlexBetween>
-    </Box>
+      </Grid>
+      {/* CHECKBOXES */}
+      {/* <Stack direction="column"> */}
+      {formattedDaysAndCompletions.map((day) => (
+        <Grid
+          item
+          xs={matches ? 1 : 4}
+          borderTop={"#5F4126 solid 1px"}
+          borderBottom={"#5F4126 solid 1px"}
+          borderLeft={"#5F4126 solid 1px"}
+          borderRight={"#5F4126 solid 1px"}
+          align={"center"}
+          backgroundColor={todayString === day.date ? "#001f1e" : "#ded0b9"}
+        >
+          <Checkbox
+            sx={{
+              cursor: "pointer",
+              margin: "5px",
+              backgroundColor:
+                todayString === day.date
+                  ? "#0e534e"
+                  : theme.palette.primary.main,
+
+              "& .MuiSvgIcon-root": {
+                fontSize: { xs: "0.5", sm: "0.9rem", md: "1rem", lg: "1.5rem" },
+              },
+            }}
+            onChange={handleComplete}
+            checked={day.completed}
+            disabled={day.completed}
+            value={day.date}
+            onClick={(e) => onCheckBoxClicked(e, day)}
+          />
+        </Grid>
+      ))}
+
+      <Grid
+        item
+        display={matches ? "" : "none"}
+        xs={1}
+        borderTop={"#5F4126 solid 1px"}
+        borderBottom={"#5F4126 solid 1px"}
+        borderLeft={"#5F4126 solid 1px"}
+        borderRight={"#5F4126 solid 1px"}
+      >
+        <Typography
+          m={"4px"}
+          align="center"
+          fontSize={{ sm: "0.9rem", md: "1rem", lg: "1.3rem" }}
+          color={theme.palette.primary.main}
+        >
+          {percent}%
+        </Typography>
+      </Grid>
+      <Grid
+        item
+        display={matches ? "" : "none"}
+        xs={1}
+        borderTop={"#5F4126 solid 1px"}
+        borderBottom={"#5F4126 solid 1px"}
+        borderLeft={"#5F4126 solid 1px"}
+        borderRight={"#5F4126 solid 1px"}
+        align="center"
+      >
+        <Typography
+          m={"4px"}
+          fontSize={{ sm: "0.9rem", md: "1rem", lg: "1.3rem" }}
+          color={theme.palette.primary.main}
+        >
+          {lastMonthPercent}%
+        </Typography>
+      </Grid>
+      <Grid
+        item
+        // display={matches ? "" : "none"}
+        xs={matches ? 1 : 4}
+        borderTop={"#5F4126 solid 1px"}
+        borderBottom={"#5F4126 solid 1px"}
+        borderLeft={"#5F4126 solid 1px"}
+        borderRight={"#5F4126 solid 1px"}
+        align="center"
+      >
+        <Button
+          className="bevel-button"
+          sx={{
+            backgroundColor: "#960507",
+            color: "white",
+            cursor: "pointer",
+          }}
+          onClick={onDeleteHabitClicked}
+        >
+          <Typography
+            fontSize={{
+              xs: "0.6rem",
+              sm: "0.7rem",
+              md: "0.8rem",
+              lg: "0.8rem",
+            }}
+          >
+            {" "}
+            DELETE
+          </Typography>
+        </Button>
+      </Grid>
+      <Grid xs={10} display={matches ? "" : "none"}>
+        <LinearProgressWithLabel value={percent}></LinearProgressWithLabel>
+      </Grid>
+    </Grid>
   );
 };
 

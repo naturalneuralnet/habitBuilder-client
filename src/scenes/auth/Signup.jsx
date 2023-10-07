@@ -55,7 +55,7 @@ const Signup = () => {
   const [errMsg, setErrMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
 
-  const [signup, { isLoading, isSuccess }] = useSignupMutation();
+  const [signup, { isSuccess }] = useSignupMutation();
 
   /// err class that shows err message when it exists
   const errClass = errMsg ? "errmsg" : "offscreen";
@@ -110,11 +110,11 @@ const Signup = () => {
       /// catch and display any errors
       /// cleanup the variables by clearing them
       // the unwrap is needed for the error to be caught
-      const response = await signup({ username, userEmail, pwd }).unwrap();
+      const { data } = await signup({ username, userEmail, pwd }).unwrap();
 
       // console.log("IS SUCCESS");
       // console.log(isSuccess);
-      // setSuccessMsg(data.message);
+      setSuccessMsg(data.message);
       // setTimeout(() => {
       // }, 1000);
       navigate(`/login/check/${userEmail}`);

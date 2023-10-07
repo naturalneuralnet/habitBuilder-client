@@ -1,35 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Logout } from "@mui/icons-material";
 import FlexBetween from "./FlexBetween";
-import { useDispatch } from "react-redux";
 import {
   useTheme,
   AppBar,
   Toolbar,
   IconButton,
-  Button,
-  Box,
   Typography,
 } from "@mui/material";
 
 //import profilePicture from "assets/profilePicture.jpg";
 import { useSendLogoutMutation } from "scenes/auth/authApiSlice";
-import { useNavigate, Link, useLocation } from "react-router-dom";
-import useAuth from "hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+// import useAuth from "hooks/useAuth";
 import leather from "../assets/basketball.png";
 // const DASH_REGEX = /^\/welcome(\/)?$/;
 // const NOTES_REGEX = /^\/habits(\/)?$/;
 // const USERS_REGEX = /^\/users(\/)?$/;
 
 const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const theme = useTheme();
   const navigate = useNavigate();
   // const pathname = useLocation().pathname;
   // const { username, isAdmin } = useAuth();
-  const [anchorEl, setAnchorEl] = useState(null);
+  // const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleClick = (event) => setAnchorEl(event.currentTarget);
+  // const handleClick = (event) => setAnchorEl(event.currentTarget);
 
   //// Logout Button logic
   /// send Logout function and others from the mutation
@@ -69,7 +66,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   // const onNewNoteClicked = () => navigate("/dash/new");
   // const onNewUserClicked = () => navigate("/dash/users/new");
   // const onNotesClicked = () => navigate("/dash/habits");
-  const onUsersClicked = () => navigate("/dash/users");
+  // const onUsersClicked = () => navigate("/dash/users");
 
   // /// new buttons
 
@@ -119,7 +116,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
     </IconButton>
   );
 
-  const errClass = isError ? "errmsg" : "offscreen";
+  // const errClass = isError ? "errmsg" : "offscreen";
 
   let buttonContent;
   if (isLoading) {
@@ -152,7 +149,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
         {/* RIGHT SIDE */}
         <FlexBetween gap="1.5rem">
           <FlexBetween>
-            <Button
+            {/* <Button
               onClick={handleClick}
               sx={{
                 display: "flex",
@@ -163,7 +160,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
               }}
             >
               <Box textAlign="left"></Box>
-            </Button>
+            </Button> */}
 
             {buttonContent}
           </FlexBetween>

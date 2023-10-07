@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useGetAllHabitsQuery } from "./habitsApiSlice";
 import React from "react";
-import TempHabit from "./TempHabit";
+import Habit from "./Habit";
 import useAuth from "hooks/useAuth";
 import useMediaQuery from "@mui/material/useMediaQuery";
 const getDays = (year, month) => new Date(year, month, 0).getDate();
@@ -148,11 +148,7 @@ const WeeklyHabits = () => {
         {filteredHabitIds.map((habitId) => {
           return (
             <ListItem sx={{ m: "10px 0px" }} key={habitId} disablePadding>
-              <TempHabit
-                key={habitId}
-                habitId={habitId}
-                week={week}
-              ></TempHabit>
+              <Habit key={habitId} habitId={habitId} week={week}></Habit>
             </ListItem>
           );
         })}

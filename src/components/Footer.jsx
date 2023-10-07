@@ -1,6 +1,6 @@
 import React from "react";
 //import useAuth from "hooks/useAuth";
-import { useNavigate, useLocation } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 //import HomeIcon from "@mui/icons-material/Home";
 import leather from "../assets/basketball.png";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -8,7 +8,7 @@ import { IconButton, AppBar, Toolbar, useTheme } from "@mui/material";
 
 const Footer = () => {
   const theme = useTheme();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // const { pathname } = useLocation();
 
   // const onGoHomeClicked = () => navigate("/dash");
