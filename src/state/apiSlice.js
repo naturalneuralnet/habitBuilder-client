@@ -3,7 +3,7 @@ import { setCredentials } from "scenes/auth/authSlice";
 
 // https://habitBuilder-server.onrender.com
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://habitmaker-api-ma96.onrender.com/",
+  baseUrl: "https://habitmaker-api-ma96.onrender.com",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.token;
