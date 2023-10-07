@@ -13,6 +13,7 @@
 /src/scenes/auth/TestPiece.jsx
 /src/components/Sidebar.jsx
 /src/components/WeeklyBox.jsx
+package-lock.json
 
 # misc
 .DS_Store
