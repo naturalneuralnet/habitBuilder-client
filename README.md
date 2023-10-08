@@ -21,34 +21,23 @@ Clone or download the front-end
 
 install dependencies with 
 
-npm install
+`npm install`
 
 change the api endpoint inside apiSlice to the local host you will be running the backend on
 
-use npm run start to run the front end
+use `npm run start` to run the front end
 
-Clone or download the backend
-
-install dependencies with 
-
-npm install
-
-change the api endpoint inside corsOptions allowedOrigin to the local host you will be running the frontend on
-
-use npm run start dev to run the backend
-
-
-
-
+Clone or download the backend and follow the usage instructions for it. 
 
 
 ## Technologies Used
 
-React
-React-Redux and Redux Toolkit
-Material UI 
-MongoDB
-JWT - for authentication and authorization
+- React
+- React-Redux 
+- Redux Toolkit
+- Material UI 
+- JWT
+
 
 ## Credits
 
