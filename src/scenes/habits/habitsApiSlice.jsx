@@ -1,6 +1,5 @@
 import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
-import { selectUserIds } from "scenes/users/usersApiSlice";
-import { useSelector } from "react-redux";
+
 // import api slice
 import { apiSlice } from "state/apiSlice";
 
@@ -10,6 +9,7 @@ const habitsAdapter = createEntityAdapter({});
 const initialState = habitsAdapter.getInitialState();
 
 // inject the endpoint into the api slice
+//Adapted from Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course
 export const habitsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     /// already got the base query inside the api
@@ -130,10 +130,6 @@ export const {
 } = habitsApiSlice;
 
 // returns the query result object, by calling the habitspislice, enpoints, gethabits hook and the select mehtod on that hook
-
-// export const selectHabitsResult = habitsApiSlice.endpoints.getHabits.select({
-//   id: "648b0a6cf0f1f45436f9a59c",
-// });
 
 export const selectHabitsResult =
   habitsApiSlice.endpoints.getAllHabits.select();

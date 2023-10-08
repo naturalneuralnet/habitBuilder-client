@@ -4,7 +4,7 @@ import { usersApiSlice } from "../users/usersApiSlice";
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
-/// Not fully sure what this does, I think it calls the redux reducers to fetch data before the app loads
+// Adapted from Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course
 const Prefetch = () => {
   useEffect(() => {
     const notes = store.dispatch(

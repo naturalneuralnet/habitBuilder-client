@@ -13,9 +13,12 @@ import {
   Stack,
   Checkbox,
 } from "@mui/material";
-import { LottieGif } from "components/LottieGif";
+// import { LottieGif } from "components/LottieGif";
 import leather from "../../assets/basketball.png";
 import new_card from "../../assets/newest_card.png";
+import nat from "../../assets/green-frame-nature.gif";
+
+// Adapted from Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course
 const Login = () => {
   // use to set focus on user input
   const userRef = useRef();
@@ -292,8 +295,9 @@ const Login = () => {
                 Even if you miss a day
               </Typography>
             </Box>
-            <Box display={"flex"} justifyContent={"center"}>
-              <LottieGif></LottieGif>
+            <Box display={"flex"} justifyContent={"center"} padding={"10px"}>
+              {/* <LottieGif></LottieGif> */}
+              <img src={nat} alt="nature_gif"></img>
             </Box>
             <Box display={"flex"} justifyContent={"center"}>
               <Button

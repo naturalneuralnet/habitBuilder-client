@@ -15,6 +15,7 @@ import jwtDecode from "jwt-decode";
 // return those if they are there
 // set the status for whicever role is highest, higherStatus
 
+/// courtesy of Dave Grey's Tutorial https://github.com/gitdagray/mern_stack_course)
 const useAuth = () => {
   const token = useSelector(selectCurrentToken);
 

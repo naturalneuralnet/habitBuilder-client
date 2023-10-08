@@ -11,13 +11,9 @@ import Footer from "components/Footer";
 const DashLayout = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  //const userId = useSelector((state) => state.global.userId);
-
-  //console.log("🚀 ~ file: Layout.jsx:14 ~ Layout ~ Id:", userId);
 
   const { data } = useGetUsersQuery(); // ctrl alt and l for turbo log
 
-  console.log("🚀 ~ file: Layout.jsx:15 ~ Layout ~ data:", data);
   return (
     <Box display={isNonMobile ? "flex" : "block"} width="100%" height="100%">
       {/* <Sidebar

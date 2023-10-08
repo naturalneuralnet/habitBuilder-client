@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Logout } from "@mui/icons-material";
-import FlexBetween from "./FlexBetween";
 import {
   useTheme,
   AppBar,
@@ -14,6 +13,7 @@ import { useSendLogoutMutation } from "scenes/auth/authApiSlice";
 import { useNavigate } from "react-router-dom";
 // import useAuth from "hooks/useAuth";
 import leather from "../assets/basketball.png";
+import { Box } from "@mui/system";
 // const DASH_REGEX = /^\/welcome(\/)?$/;
 // const NOTES_REGEX = /^\/habits(\/)?$/;
 // const USERS_REGEX = /^\/users(\/)?$/;
@@ -145,26 +145,33 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
         {/* LEFT SIDE */}
-        <FlexBetween></FlexBetween>
-        {/* RIGHT SIDE */}
-        <FlexBetween gap="1.5rem">
-          <FlexBetween>
-            {/* <Button
-              onClick={handleClick}
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                textTransform: "none",
-                gap: "1rem",
-              }}
-            >
-              <Box textAlign="left"></Box>
-            </Button> */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        ></Box>
 
-            {buttonContent}
-          </FlexBetween>
-        </FlexBetween>
+        {/* RIGHT SIDE */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+          gap={"1.5rem"}
+        >
+          {" "}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          ></Box>
+          {buttonContent}
+        </Box>
       </Toolbar>
     </AppBar>
   );

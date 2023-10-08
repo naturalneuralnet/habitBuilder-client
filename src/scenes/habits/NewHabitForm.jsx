@@ -9,7 +9,6 @@ import {
   Button,
   Divider,
 } from "@mui/material";
-import FlexBetween from "components/FlexBetween";
 import { useTheme } from "@emotion/react";
 const NewHabitForm = ({ user }) => {
   const [addNewHabit, { isLoading, isSuccess, isError, error }] =

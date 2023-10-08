@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Paper, useTheme, Box, Typography, Button } from "@mui/material";
 import { useVerifyMutation } from "./authApiSlice";
 import new_card from "../../assets/newest_card.png";
+
 const Intro = () => {
   const theme = useTheme();
   const [verify, { isLoading, isSuccess, isError, error }] =

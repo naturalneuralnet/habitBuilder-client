@@ -1,13 +1,10 @@
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import { useState } from "react";
 import NewHabitForm from "./NewHabitForm";
 import useAuth from "hooks/useAuth";
 import { useTheme } from "@emotion/react";
 import { Paper } from "@mui/material";
 import leather from "../../assets/basketball.png";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -22,16 +19,8 @@ const style = {
   boxShadow: 24,
 };
 
-export default function NewHabitModal({ open, handleOpen, handleClose }) {
-  //   const [open, setOpen] = useState(false);
-  //   const handleOpen = () => setOpen(true);
-  //   const handleClose = () => setOpen(false);
-
-  const { userId, isAdmin } = useAuth();
-  // const users = useSelector(selectAllUsers);
-  const theme = useTheme();
-  // console.log("ALL USERS");
-  // console.log(users);
+export default function NewHabitModal() {
+  const { userId } = useAuth();
 
   if (!userId?.length) return <p>Not Currently Available</p>;
   return (

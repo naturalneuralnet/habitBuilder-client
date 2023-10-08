@@ -1,6 +1,7 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-/// this will be used as a wrapper
+
+// Courtesy of Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course
 const RequireAuth = ({ allowedRoles }) => {
   const location = useLocation();
   // gets the current users rules

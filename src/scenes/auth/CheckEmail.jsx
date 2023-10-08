@@ -4,6 +4,7 @@ import { Paper, useTheme, Box, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import new_card from "../../assets/newest_card.png";
 
+// adapted from this tutorial:
 const CheckEmail = () => {
   const theme = useTheme();
 

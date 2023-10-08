@@ -26,26 +26,18 @@ const Signup = () => {
   const errRef = useRef();
   const successRef = useRef();
   const navigate = useNavigate();
-  /// username
-  /// email address
-  /// password
-  /// matching password
 
   const [username, setUsername] = useState("");
   const [validName, setValidName] = useState(false);
   const [userFocus, setUserFocus] = useState(false);
 
-  /// email
   const [userEmail, setUserEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
   const [emailFocus, setEmailFocus] = useState(false);
 
-  // password
   const [pwd, setPwd] = useState("");
   const [validPwd, setValidPwd] = useState(false);
   const [pwdFocus, setPwdFocus] = useState(false);
-
-  // matching password
 
   const [matchPwd, setMatchPwd] = useState("");
   const [validMatch, setValidMatch] = useState(false);

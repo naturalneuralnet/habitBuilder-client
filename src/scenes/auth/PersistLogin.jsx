@@ -1,15 +1,11 @@
 import { Outlet, Link } from "react-router-dom";
-
 import { useEffect, useRef, useState } from "react";
-
 import { useRefreshMutation } from "./authApiSlice";
-
 import usePersist from "../../hooks/usePersist";
-
 import { useSelector } from "react-redux";
-
 import { selectCurrentToken } from "./authSlice";
 
+// Adapted from Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course
 const PersistLogin = () => {
   /// persist
 

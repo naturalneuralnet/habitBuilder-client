@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Adapted from Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course
 const authSlice = createSlice({
   name: "auth",
   /// the token is set to null

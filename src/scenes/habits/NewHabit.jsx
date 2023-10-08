@@ -1,21 +1,17 @@
 import React from "react";
-import { Box, Divider, Paper, useTheme } from "@mui/material";
+import { Box, Paper, useTheme } from "@mui/material";
 import Header from "components/Header";
 import NewHabitForm from "./NewHabitForm";
-import { useSelector } from "react-redux";
-import { selectAllUsers } from "scenes/users/usersApiSlice";
+
 import useAuth from "hooks/useAuth";
+
+// Adapted from Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course
 const NewHabit = () => {
   const { userId, isAdmin } = useAuth();
-  // const users = useSelector(selectAllUsers);
+
   const theme = useTheme();
-  // console.log("ALL USERS");
-  // console.log(users);
 
   if (!userId?.length) return <p>Not Currently Available</p>;
-
-  // const userId = users[0].id;
-  // console.log(userId);
 
   return (
     <Box className="Header">

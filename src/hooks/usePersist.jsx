@@ -4,6 +4,7 @@
 
 // just for persisting
 
+// courtesy of Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course)
 import { useState, useEffect } from "react";
 
 const usePersist = () => {

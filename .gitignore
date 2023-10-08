@@ -13,6 +13,8 @@
 /src/scenes/auth/TestPiece.jsx
 /src/components/Sidebar.jsx
 /src/components/WeeklyBox.jsx
+/src/scenes/auth/Welcome.jsx
+/src/scenes/habits/OldHabit.jsx
 package-lock.json
 
 # misc

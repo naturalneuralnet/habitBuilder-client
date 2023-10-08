@@ -5,8 +5,6 @@ import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { themeSettings } from "theme";
 import DashLayout from "scenes/layout/DashLayout.jsx";
-import NewHabit from "scenes/habits/NewHabit";
-import HabitHistory from "scenes/habits/HabitHistory";
 import Prefetch from "scenes/auth/Prefetch";
 import UsersList from "scenes/users/usersList";
 import HabitsList from "scenes/habits/HabitsList";
@@ -55,8 +53,8 @@ function App() {
                     <Route path="dash" element={<DashLayout />}>
                       {/* <Route index element={<Welcome />} /> */}
                       <Route path="habits" element={<HabitsList />} />
-                      <Route path="new" element={<NewHabit />} />{" "}
-                      <Route path="history" element={<HabitHistory />} />
+                      {/* <Route path="new" element={<NewHabit />} />{" "}
+                      <Route path="history" element={<HabitHistory />} /> */}
                       <Route
                         element={<RequireAuth allowedRoles={[ROLES.admin]} />}
                       >

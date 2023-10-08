@@ -8,7 +8,6 @@ import {
   Paper,
   Modal,
 } from "@mui/material";
-
 import { useState } from "react";
 import useAuth from "hooks/useAuth";
 import NewHabitModal from "./NewHabitModal";
@@ -20,6 +19,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { Stack } from "@mui/system";
 import new_card from "../../assets/newest_card.png";
 
+// Adapted from Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course
 const HabitsList = () => {
   const matches = useMediaQuery("(min-width:900px)");
   const [currentView, setCurrentView] = useState("Weekly");
