@@ -255,6 +255,9 @@ const Signup = () => {
                         "& .MuiInput-underline:before": {
                           borderBottomColor: "#001f1e",
                         },
+                        "& .MuiInputBase-root:hover:before": {
+                          borderBottom: "2px solid #5F4126 !important",
+                        },
                       }}
                       inputProps={{ style: { color: "#180e0e", fontSize: 20 } }} // font size of input text
                       InputLabelProps={{
@@ -299,6 +302,9 @@ const Signup = () => {
                         "& .MuiInput-underline:before": {
                           borderBottomColor: "#001f1e",
                         },
+                        "& .MuiInputBase-root:hover:before": {
+                          borderBottom: "2px solid #5F4126 !important",
+                        },
                       }}
                       inputProps={{ style: { color: "#180e0e", fontSize: 20 } }} // font size of input text
                       InputLabelProps={{
@@ -327,6 +333,9 @@ const Signup = () => {
                         width: "300px",
                         "& .MuiInput-underline:before": {
                           borderBottomColor: "#001f1e",
+                        },
+                        "& .MuiInputBase-root:hover:before": {
+                          borderBottom: "2px solid #5F4126 !important",
                         },
                       }}
                       value={pwd}

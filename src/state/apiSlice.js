@@ -4,7 +4,7 @@ import { setCredentials } from "scenes/auth/authSlice";
 // https://habitBuilder-server.onrender.com
 // Adapted from Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:5001/",
+  baseUrl: "https://habitmaker-api-ma96.onrender.com",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.token;
