@@ -7,7 +7,7 @@ import { useSignupMutation } from "./authApiSlice";
 import { LottieGif } from "components/LottieGif";
 import { Link, useNavigate } from "react-router-dom";
 import leather from "../../assets/basketball.png";
-
+import nat from "../../assets/green-frame-nature.gif";
 import new_card from "../../assets/newest_card.png";
 const ColorButton = styled(Button)(({ theme }) => ({
   background: "#1484a6",
@@ -168,8 +168,8 @@ const Signup = () => {
                 Even if you miss a day
               </Typography>
             </Box>
-            <Box display={"flex"} justifyContent={"center"}>
-              <LottieGif></LottieGif>
+            <Box display={"flex"} justifyContent={"center"} padding={"10px"}>
+              <img src={nat} alt="nature_gif"></img>
             </Box>
             <Box display={"flex"} justifyContent={"center"}>
               <Button
@@ -212,7 +212,7 @@ const Signup = () => {
                   SIGN UP
                 </Typography>
               </Box>
-              <Box display={"flex"} justifyContent={"center"}>
+              {/* <Box display={"flex"} justifyContent={"center"}>
                 <ColorButton>
                   <img
                     alt="google img"
@@ -224,8 +224,8 @@ const Signup = () => {
                     With Google
                   </Typography>
                 </ColorButton>
-              </Box>
-              <Box display={"flex"} justifyContent={"center"}>
+              </Box> */}
+              {/* <Box display={"flex"} justifyContent={"center"}>
                 <Typography
                   variant="h3"
                   color="#180e0e"
@@ -236,7 +236,7 @@ const Signup = () => {
                   {" "}
                   -OR-
                 </Typography>
-              </Box>
+              </Box> */}
               <Box color={"#180e0e"}>
                 <form onSubmit={handleSubmit}>
                   <div>

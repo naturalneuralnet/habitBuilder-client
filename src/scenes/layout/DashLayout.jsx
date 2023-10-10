@@ -12,7 +12,7 @@ const DashLayout = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const { data } = useGetUsersQuery(); // ctrl alt and l for turbo log
+  const { data } = useGetUsersQuery();
 
   return (
     <Box display={isNonMobile ? "flex" : "block"} width="100%" height="100%">

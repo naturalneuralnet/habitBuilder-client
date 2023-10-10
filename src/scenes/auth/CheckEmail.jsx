@@ -4,16 +4,12 @@ import { Paper, useTheme, Box, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import new_card from "../../assets/newest_card.png";
 
-// adapted from this tutorial:
+// adapted from this tutorial: https://betterprogramming.pub/how-to-create-a-signup-confirmation-email-with-node-js-c2fea602872a
 const CheckEmail = () => {
   const theme = useTheme();
-
   const params = useParams();
-
   const { userEmail } = params;
-
   const match = useMatch(`login/check/:${userEmail}`);
-
   let content;
 
   if (match) {

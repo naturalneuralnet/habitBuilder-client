@@ -12,6 +12,8 @@ import { logOut, setCredentials } from "./authSlice"; /// then the apiSlice.util
 // const data would be the data recieved from the fulfilled query
 /// keeps us from needing to import dispatch as its already there
 /// dispatch the logout reducer from authSlice to logout
+
+// Adapted from Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     /// mutation its POST, passing in credentials

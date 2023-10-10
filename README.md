@@ -55,3 +55,10 @@ __Assets:__
 - Bevel Button CSS by [itecnote](https://itecnote.com/tecnote/css-how-to-achieve-this-bevel-button-in-css/)
 
 
+## Status
+
+On hold. I intend to return to it and add additional functionaility such as:
+- OAuth Login with Google
+- Monthly Habit History
+- Yearly Habit History
+- Guest Login

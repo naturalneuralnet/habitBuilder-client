@@ -7,8 +7,6 @@ import { selectCurrentToken } from "./authSlice";
 
 // Adapted from Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course
 const PersistLogin = () => {
-  /// persist
-
   const [persist] = usePersist(); /// the current token
 
   const token = useSelector(selectCurrentToken); /// for react 18 handling strict mode
