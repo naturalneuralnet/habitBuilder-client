@@ -15,6 +15,8 @@
 /src/components/WeeklyBox.jsx
 /src/scenes/auth/Welcome.jsx
 /src/scenes/habits/OldHabit.jsx
+/src/state/apiSlice.js
+
 package-lock.json
 
 # misc
