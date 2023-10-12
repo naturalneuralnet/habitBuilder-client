@@ -1,7 +1,8 @@
 import { useGetUsersQuery } from "./usersApiSlice";
 import User from "./User";
-import { useSelector } from "react-redux";
-import { selectUserIds } from "./usersApiSlice";
+import { Grid, Paper, Box, useTheme, Typography } from "@mui/material";
+import new_card from "../../assets/newest_card.png";
+import leather from "../../assets/basketball.png";
 // destructures the data from getUsersQuery
 const UsersList = () => {
   const {
@@ -11,9 +12,10 @@ const UsersList = () => {
     isError,
     error,
   } = useGetUsersQuery();
+  const theme = useTheme();
 
-  const userIDs = useSelector((state) => selectUserIds(state));
-  const userID = userIDs[0];
+  // const userIDs = useSelector((state) => selectUserIds(state));
+  // const userID = userIDs[0];
   let content;
   // if is loading then put a loading para
   if (isLoading) content = <p>Loading...</p>;
@@ -31,22 +33,68 @@ const UsersList = () => {
       : null;
 
     content = (
-      <table className="table table--users">
-        <thead className="table__thead">
-          <tr>
-            <th scope="col" className="table__th user__username">
-              Username
-            </th>
-            <th scope="col" className="table__th user__roles">
-              Roles
-            </th>
-            <th scope="col" className="table__th user__edit">
-              Edit
-            </th>
-          </tr>
-        </thead>
-        <tbody>{tableContent}</tbody>
-      </table>
+      <Box m={"1rem 2rem"}>
+        {" "}
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            width: "100%",
+            height: "100%",
+            marginTop: "5px",
+            background: theme.palette.primary.main,
+            backgroundImage: `url(${leather})`,
+            backgroundSize: "repeat",
+            padding: "10px",
+            "& > :not(style)": {
+              width: "100%",
+              height: "59vh",
+            },
+          }}
+        >
+          <Paper
+            sx={{
+              background: "#ded0b9",
+              backgroundImage: `url(${new_card})`,
+              backgroundSize: "repeat",
+              padding: "10px",
+              border: "#5F4126 solid 1px",
+            }}
+            elevation={4}
+          >
+            <Grid container>
+              <Grid item xs={3}>
+                <Typography
+                  variant="h4"
+                  fontSize={{ xs: "12px", sm: "14px", md: "18px", lg: "22px" }}
+                  color={theme.palette.primary.main}
+                >
+                  Username
+                </Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography
+                  variant="h4"
+                  fontSize={{ xs: "12px", sm: "14px", md: "18px", lg: "22px" }}
+                  color={theme.palette.primary.main}
+                >
+                  Roles
+                </Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography
+                  variant="h4"
+                  fontSize={{ xs: "12px", sm: "14px", md: "18px", lg: "22px" }}
+                  color={theme.palette.primary.main}
+                >
+                  Edit
+                </Typography>
+              </Grid>
+              {tableContent}
+            </Grid>
+          </Paper>
+        </Box>
+      </Box>
     );
   }
 

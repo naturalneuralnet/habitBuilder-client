@@ -5,6 +5,7 @@ import usePersist from "../../hooks/usePersist";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "./authSlice";
 import { useLoginMutation } from "./authApiSlice";
+import { useGuestMutation } from "./authApiSlice";
 import {
   Box,
   Button,
@@ -35,6 +36,8 @@ const Login = () => {
 
   /// login fucntion from mutation
   const [login, { isLoading }] = useLoginMutation();
+
+  const [guest] = useGuestMutation();
   /// handles the user ref, puts the focus on the username field
   useEffect(() => {
     userRef.current.focus();
@@ -79,6 +82,35 @@ const Login = () => {
     }
   };
 
+  const handleGuestSubmit = async (e) => {
+    e.preventDefault();
+    // login as a guest user
+    // guest user is created and doesn't require an email account ot verification
+    // can add/update/delete habits
+    // but everything is lost on logout
+    // but guest user is deleted after a day and has a shorter authentication period
+    try {
+      const { accessToken } = await guest({
+        username: "guest",
+        pwd: "none",
+        userEmail: "none",
+      }).unwrap();
+      dispatch(setCredentials({ accessToken }));
+
+      navigate("/dash/habits");
+    } catch (err) {
+      if (!err.status) {
+        setErrMsg("No Server Response");
+      } else if (err.status === 400) {
+        setErrMsg("Missing Username or Password");
+        // } else if (err.status === 401) {
+        //   setErrMsg("Unauthorized");
+      } else {
+        setErrMsg(err.data?.message);
+      }
+      errRef.current.focus();
+    }
+  };
   /// handles the input
   const handleUserInput = (e) => setUsername(e.target.value);
   const handlePwdInput = (e) => setPassword(e.target.value);
@@ -236,8 +268,9 @@ const Login = () => {
                   <Button
                     m={"5px"}
                     variant="contained"
+                    className="bevel-button"
                     sx={{
-                      backgroundColor: "#180e0e",
+                      backgroundColor: "#391e1b",
                       color: "white",
                       fontSize: "18px",
                       cursor: "pointer",
@@ -253,6 +286,24 @@ const Login = () => {
                   {/* <IconButton href="/">
                     <CottageIcon></CottageIcon>
                   </IconButton> */}
+                  <Button
+                    m={"5px"}
+                    className="bevel-button"
+                    variant="contained"
+                    sx={{
+                      backgroundColor: "#391e1b",
+                      color: "white",
+                      fontSize: "18px",
+                      cursor: "pointer",
+                      borderRadius: "1px",
+                    }}
+                    gutterBottom
+                    type="submit"
+                    onClick={handleGuestSubmit}
+                    // onTouchStart={handleSubmit}
+                  >
+                    LOG IN As GUEST
+                  </Button>
                 </Stack>
               </form>
             </Box>
@@ -302,10 +353,12 @@ const Login = () => {
             <Box display={"flex"} justifyContent={"center"}>
               <Button
                 variant="contained"
+                className="bevel-button"
                 sx={{
-                  backgroundColor: "#180e0e",
+                  backgroundColor: "#391e1b",
                   color: "white",
                   fontSize: "18px",
+                  fontFamily: "Italiana",
                   borderRadius: "1px",
                 }}
               >

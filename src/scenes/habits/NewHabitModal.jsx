@@ -1,10 +1,9 @@
 import Box from "@mui/material/Box";
 import NewHabitForm from "./NewHabitForm";
 import useAuth from "hooks/useAuth";
-import { useTheme } from "@emotion/react";
 import { Paper } from "@mui/material";
 import leather from "../../assets/basketball.png";
-
+import new_card from "../../assets/newest_card.png";
 const style = {
   position: "absolute",
   top: "50%",
@@ -19,7 +18,7 @@ const style = {
   boxShadow: 24,
 };
 
-export default function NewHabitModal() {
+export default function NewHabitModal({ open, close }) {
   const { userId } = useAuth();
 
   if (!userId?.length) return <p>Not Currently Available</p>;
@@ -33,10 +32,13 @@ export default function NewHabitModal() {
             height: "40%",
             margin: "auto",
             borderRadius: "0px",
+
+            backgroundImage: `url(${new_card})`,
+            backgroundSize: "repeat",
           }}
           elevation={6}
         >
-          <NewHabitForm user={userId}></NewHabitForm>
+          <NewHabitForm user={userId} open={open} close={close}></NewHabitForm>
         </Paper>
       </Box>
     </>

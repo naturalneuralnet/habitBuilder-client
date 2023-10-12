@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useAddNewHabitMutation } from "./habitsApiSlice";
 import { useNavigate } from "react-router-dom";
-import {
-  TextField,
-  Box,
-  Stack,
-  Typography,
-  Button,
-  Divider,
-} from "@mui/material";
+import { TextField, Box, Stack, Typography, Button } from "@mui/material";
 import { useTheme } from "@emotion/react";
-const NewHabitForm = ({ user }) => {
-  const [addNewHabit, { isLoading, isSuccess, isError, error }] =
-    useAddNewHabitMutation();
+
+const NewHabitForm = ({ user, open, close }) => {
+  const [addNewHabit, { isLoading, isSuccess }] = useAddNewHabitMutation();
 
   const navigate = useNavigate();
   const theme = useTheme();
@@ -47,6 +40,7 @@ const NewHabitForm = ({ user }) => {
     console.log("save habit clicked");
     if (canSave) {
       await addNewHabit({ name, user: userId });
+      close(true);
     }
   };
   /// classes to apply depending on how valid things are
@@ -72,7 +66,12 @@ const NewHabitForm = ({ user }) => {
       >
         <Box m={"3rem"}>
           <form onSubmit={onSaveHabitClicked}>
-            <Stack spacing={3}>
+            <Stack
+              spacing={3}
+              display={"flex"}
+              justifyContent={"center"}
+              alignItems={"center"}
+            >
               <Typography
                 gutterBottom
                 m={"5px"}
@@ -81,22 +80,22 @@ const NewHabitForm = ({ user }) => {
               >
                 Add Habit
               </Typography>
-              <Typography
+              {/* <Typography
                 gutterBottom
                 m={"5px"}
                 variant="h4"
                 color={theme.palette.primary.main}
               >
                 Build up habits!
-              </Typography>
-              <Divider
+              </Typography> */}
+              {/* <Divider
                 className="divider"
                 variant="middle"
                 sx={{
                   borderColor: theme.palette.primary.main,
                   width: "100%",
                 }}
-              ></Divider>
+              ></Divider> */}
               <Typography
                 gutterBottom
                 m={"5px"}
@@ -109,6 +108,7 @@ const NewHabitForm = ({ user }) => {
                 m={"5px"}
                 color={"warning"}
                 size="small"
+                variant="standard"
                 onChange={handleOnNameChange}
                 sx={{
                   "& label": {
@@ -151,10 +151,15 @@ const NewHabitForm = ({ user }) => {
                 m={"5px"}
                 gutterBottom
                 variant="contained"
+                className="bevel-button"
                 type="submit"
                 disabled={!canSave}
                 sx={{
+                  backgroundColor: "#391e1b",
+                  color: "white",
+                  fontSize: "18px",
                   cursor: "pointer",
+                  borderRadius: "1px",
                 }}
               >
                 SUBMIT

@@ -7,23 +7,23 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-
+import { AdminPanelSettingsOutlined } from "@mui/icons-material";
 //import profilePicture from "assets/profilePicture.jpg";
 import { useSendLogoutMutation } from "scenes/auth/authApiSlice";
 import { useNavigate } from "react-router-dom";
-// import useAuth from "hooks/useAuth";
+import useAuth from "hooks/useAuth";
 import leather from "../assets/basketball.png";
 import { Box } from "@mui/system";
 // const DASH_REGEX = /^\/welcome(\/)?$/;
 // const NOTES_REGEX = /^\/habits(\/)?$/;
-// const USERS_REGEX = /^\/users(\/)?$/;
+const USERS_REGEX = /^\/users(\/)?$/;
 
 const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   // const dispatch = useDispatch();
   const theme = useTheme();
   const navigate = useNavigate();
   // const pathname = useLocation().pathname;
-  // const { username, isAdmin } = useAuth();
+  const { isAdmin } = useAuth();
   // const [anchorEl, setAnchorEl] = useState(null);
 
   // const handleClick = (event) => setAnchorEl(event.currentTarget);
@@ -66,7 +66,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   // const onNewNoteClicked = () => navigate("/dash/new");
   // const onNewUserClicked = () => navigate("/dash/users/new");
   // const onNotesClicked = () => navigate("/dash/habits");
-  // const onUsersClicked = () => navigate("/dash/users");
+  const onUsersClicked = () => navigate("/dash/users");
 
   // /// new buttons
 
@@ -88,17 +88,18 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   //   );
   // }
 
-  // let userButton = null;
-  // if (isAdmin) {
-  //   if (USERS_REGEX.test(pathname) && pathname.includes("/dash")) {
-  //     userButton = (
-  //       <IconButton onClick={onUsersClicked} color={"success"}>
-  //         <AdminPanelSettingsOutlined
-  //           sx={{ fontSize: "25px" }}
-  //         ></AdminPanelSettingsOutlined>
-  //       </IconButton>
-  //     );
-  //   }
+  let userButton = null;
+  if (isAdmin) {
+    // if (USERS_REGEX.test(pathname) && pathname.includes("/dash/habits")) {
+    console.log("USERS REGEX PASSES");
+    userButton = (
+      <IconButton onClick={onUsersClicked}>
+        <AdminPanelSettingsOutlined
+          sx={{ fontSize: "25px" }}
+        ></AdminPanelSettingsOutlined>
+      </IconButton>
+    );
+  }
   // }
 
   // let notesButton = null;
@@ -127,7 +128,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
         {/* {newNoteButton}
         {newUserButton}
         {notesButton} */}
-        {/* {userButton} */}
+        {userButton}
         {logoutButton}
       </>
     );

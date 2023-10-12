@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setCredentials } from "scenes/auth/authSlice";
 
-// https://habitBuilder-server.onrender.com
+// https://habitBuilder-server.onrender.com///http://localhost:5001/
 // Adapted from Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://habitmaker-api-ma96.onrender.com",
+  baseUrl: "https://habitBuilder-server.onrender.com",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.token;

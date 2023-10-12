@@ -4,18 +4,18 @@ import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
 import { styled } from "@mui/material/styles";
 import { useSignupMutation } from "./authApiSlice";
-import { LottieGif } from "components/LottieGif";
 import { Link, useNavigate } from "react-router-dom";
 import leather from "../../assets/basketball.png";
 import nat from "../../assets/green-frame-nature.gif";
 import new_card from "../../assets/newest_card.png";
-const ColorButton = styled(Button)(({ theme }) => ({
-  background: "#1484a6",
-  backdropFilter: "blur(10px)",
-  border: "1px solid rgba(255,255,255,0.25)",
-  borderRadius: "5px",
-  width: "200px",
-}));
+
+// const ColorButton = styled(Button)(({ theme }) => ({
+//   background: "#1484a6",
+//   backdropFilter: "blur(10px)",
+//   border: "1px solid rgba(255,255,255,0.25)",
+//   borderRadius: "5px",
+//   width: "200px",
+// }));
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -111,6 +111,7 @@ const Signup = () => {
       // }, 1000);
       navigate(`/login/check/${userEmail}`);
     } catch (err) {
+      console.log(err);
       if (!err.status) {
         setErrMsg("No Server Response");
       } else if (err.status === 400) {
@@ -265,7 +266,7 @@ const Signup = () => {
                       }} // font size of input label
                       onChange={(e) => setUsername(e.target.value)}
                       onFocus={() => setUserFocus(true)}
-                      onBlue={() => setUserFocus(false)}
+                      onBlur={() => setUserFocus(false)}
                       helperText={
                         userFocus && username && !validName
                           ? "4 to 24 characters. Must begin with a letter. Letters, numbers, underscores, hyphens allowed."
@@ -408,41 +409,44 @@ const Signup = () => {
                     )}
                   </div>
                   <Box display={"flex"} justifyContent={"center"}>
-                    <Stack gap={2}>
-                      <Typography
-                        ref={errRef}
-                        className={errClass}
-                        aria-live="assertive"
+                    <Stack direction={"row"} gap={3}>
+                      <Stack>
+                        <Typography
+                          ref={errRef}
+                          className={errClass}
+                          aria-live="assertive"
+                          disabled={errMsg ? true : false}
+                        >
+                          {errMsg}
+                        </Typography>
+                        <Typography
+                          ref={successRef}
+                          className={successClass}
+                          aria-live="assertive"
+                        >
+                          {successMsg}
+                        </Typography>
+                      </Stack>
+                      <Button
+                        disabled={
+                          (!validName,
+                          !isSuccess,
+                          !validEmail,
+                          !validPwd,
+                          !validMatch ? true : false)
+                        }
+                        sx={{
+                          backgroundColor: "#180e0e",
+                          color: "white",
+                          fontSize: "20px",
+                          cursor: "pointer",
+                        }}
+                        variant="contained"
+                        type="submit"
                       >
-                        {errMsg}
-                      </Typography>
-                      <Typography
-                        ref={successRef}
-                        className={successClass}
-                        aria-live="assertive"
-                      >
-                        {successMsg}
-                      </Typography>
+                        SIGN UP
+                      </Button>
                     </Stack>
-                    <Button
-                      disabled={
-                        (!validName,
-                        !isSuccess,
-                        !validEmail,
-                        !validPwd,
-                        !validMatch ? true : false)
-                      }
-                      sx={{
-                        backgroundColor: "#180e0e",
-                        color: "white",
-                        fontSize: "20px",
-                        cursor: "pointer",
-                      }}
-                      variant="contained"
-                      type="submit"
-                    >
-                      SIGN UP
-                    </Button>
                   </Box>
                 </form>
               </Box>

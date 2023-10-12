@@ -1,4 +1,3 @@
-import LinearProgressWithLabel from "components/LinearProgressWithLabel";
 import React, { useEffect, useState } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {
@@ -15,6 +14,7 @@ import {
   useDeleteHabitMutation,
   useUpdateHabitMutation,
 } from "./habitsApiSlice";
+import { Box } from "@mui/system";
 
 /// should recieve the habit id
 const Habit = ({ habitId, week }) => {
@@ -114,7 +114,7 @@ const Habit = ({ habitId, week }) => {
   };
 
   return (
-    <Grid container rowSpacing={1}>
+    <Grid container padding={"0px"}>
       {/* NAME */}
       <Grid
         item
@@ -179,15 +179,28 @@ const Habit = ({ habitId, week }) => {
         borderBottom={"#5F4126 solid 1px"}
         borderLeft={"#5F4126 solid 1px"}
         borderRight={"#5F4126 solid 1px"}
+        padding={"0px"}
       >
-        <Typography
-          m={"4px"}
-          align="center"
-          fontSize={{ sm: "0.9rem", md: "1rem", lg: "1.3rem" }}
-          color={theme.palette.primary.main}
+        <Box
+          padding={"0px"}
+          className="PERCENTBOX"
+          width={`${percent}%`}
+          height={"100%"}
+          sx={{
+            background: "green",
+            display: "flex",
+          }}
         >
-          {percent}%
-        </Typography>
+          {" "}
+          <Typography
+            m={"4px"}
+            align="center"
+            fontSize={{ sm: "0.9rem", md: "1rem", lg: "1.3rem" }}
+            color={theme.palette.primary.main}
+          >
+            {percent}%
+          </Typography>
+        </Box>
       </Grid>
       <Grid
         item
@@ -199,13 +212,15 @@ const Habit = ({ habitId, week }) => {
         borderRight={"#5F4126 solid 1px"}
         align="center"
       >
-        <Typography
-          m={"4px"}
-          fontSize={{ sm: "0.9rem", md: "1rem", lg: "1.3rem" }}
-          color={theme.palette.primary.main}
-        >
-          {lastMonthPercent}%
-        </Typography>
+        <Box width={`${lastMonthPercent}%`} sx={{ backgroundColor: "green" }}>
+          <Typography
+            m={"4px"}
+            fontSize={{ sm: "0.9rem", md: "1rem", lg: "1.3rem" }}
+            color={theme.palette.primary.main}
+          >
+            {lastMonthPercent}%
+          </Typography>
+        </Box>
       </Grid>
       <Grid
         item
@@ -239,9 +254,9 @@ const Habit = ({ habitId, week }) => {
           </Typography>
         </Button>
       </Grid>
-      <Grid xs={10} display={matches ? "" : "none"}>
+      {/* <Grid xs={10} display={matches ? "" : "none"}>
         <LinearProgressWithLabel value={percent}></LinearProgressWithLabel>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 };

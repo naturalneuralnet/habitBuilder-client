@@ -109,6 +109,17 @@ export const authApiSlice = apiSlice.injectEndpoints({
       //   }
       // },
     }),
+
+    guest: builder.mutation({
+      /// takes in the new users credentials and signs them up
+      query: (credentials) => ({
+        url: "/auth/guest",
+
+        method: "POST",
+
+        body: { ...credentials },
+      }),
+    }),
   }),
 });
 
@@ -118,4 +129,5 @@ export const {
   useSendLogoutMutation,
   useSignupMutation,
   useVerifyMutation,
+  useGuestMutation,
 } = authApiSlice;

@@ -25,11 +25,11 @@ const HabitsList = () => {
   const [currentView, setCurrentView] = useState("Weekly");
   const [toShow, setToShow] = useState(<WeeklyHabits></WeeklyHabits>);
 
-  const [open, setOpen] = useState(false);
+  const { username, roles } = useAuth();
+  const [open, setOpen] = useState(roles[0] === "guest" ? true : false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  const { username } = useAuth();
+  console.log(roles);
 
   const updateCurrentView = useCallback(() => {
     if (currentView === "weekly") {
@@ -195,7 +195,10 @@ const HabitsList = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
-                <NewHabitModal></NewHabitModal>
+                <NewHabitModal
+                  open={handleOpen}
+                  close={handleClose}
+                ></NewHabitModal>
               </Modal>
 
               <Button
