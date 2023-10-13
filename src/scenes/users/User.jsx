@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 import { selectUserById } from "./usersApiSlice";
-import { Grid, Typography, useTheme } from "@mui/material";
+import { Button, Grid, Typography, useTheme } from "@mui/material";
 
 const User = ({ userId }) => {
   // select the user by id with the memoized selector
@@ -30,10 +30,9 @@ const User = ({ userId }) => {
             {userRolesString}
           </Grid>
           <Grid item xs={3}>
-            <button
-              className="icon-button table__button"
-              onClick={handleEdit}
-            ></button>
+            <Button className="icon-button table__button" onClick={handleEdit}>
+              DELETE
+            </Button>
           </Grid>
         </Grid>
       </>

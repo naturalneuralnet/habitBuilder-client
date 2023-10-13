@@ -247,15 +247,6 @@ const HabitsList = () => {
         <Paper
           // className="paper-back"
           sx={{
-            // background: `conic-gradient(at 62.5% 12.5%, #f2d8b6 25%, #0000 0) calc(10px/-8) calc(10px/2),
-            //       conic-gradient(at 62.5% 12.5%, #f2d8b6 25%, #0000 0) calc(-3*10px/8) calc(10px/4),
-            //       conic-gradient(at 87.5% 62.5%, #f2d8b6 25%, #0000 0) calc(3*10px/8) calc(10px/4),
-            //       conic-gradient(at 87.5% 62.5%, #f2d8b6 25%, #0000 0) calc(10px/-8) 0,
-            //       conic-gradient(at 25% 12.5%, #f2d8b6 25%, #0000 0) 0 calc(10px/-4),
-            //       conic-gradient(at 25% 12.5%, #f2d8b6 25%, #0000 0) calc(10px/-4) 0,
-            //       conic-gradient(at 87.5% 87.5%, #f2d8b6 25%, #0000 0) calc(10px/8) 0,
-            //         #f7e7ce`,
-            // backgroundSize: "10px 10px",
             background: "#ded0b9",
             backgroundImage: `url(${new_card})`,
             backgroundSize: "repeat",

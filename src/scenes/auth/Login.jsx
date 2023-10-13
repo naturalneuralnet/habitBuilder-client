@@ -85,10 +85,6 @@ const Login = () => {
   const handleGuestSubmit = async (e) => {
     e.preventDefault();
     // login as a guest user
-    // guest user is created and doesn't require an email account ot verification
-    // can add/update/delete habits
-    // but everything is lost on logout
-    // but guest user is deleted after a day and has a shorter authentication period
     try {
       const { accessToken } = await guest({
         username: "guest",
