@@ -102,11 +102,11 @@ const Signup = () => {
       /// catch and display any errors
       /// cleanup the variables by clearing them
       // the unwrap is needed for the error to be caught
-      const { data } = await signup({ username, userEmail, pwd }).unwrap();
-
+      const { message } = await signup({ username, userEmail, pwd }).unwrap();
+      console.log(message);
       // console.log("IS SUCCESS");
       // console.log(isSuccess);
-      setSuccessMsg(data.message);
+      // setSuccessMsg(data.message);
       // setTimeout(() => {
       // }, 1000);
       navigate(`/login/check/${userEmail}`);
@@ -174,6 +174,7 @@ const Signup = () => {
             </Box>
             <Box display={"flex"} justifyContent={"center"}>
               <Button
+                className="bevel-button"
                 variant="contained"
                 sx={{
                   backgroundColor: "#180e0e",
@@ -190,7 +191,7 @@ const Signup = () => {
           </Box>
         </Box>
         <Box
-          width={{ xs: "100%", sm: "40%", md: "40%", lg: "30%" }}
+          width={{ xs: "100%", sm: "50%", md: "40%", lg: "30%" }}
           display={"flex"}
           justifyContent={"center"}
           sx={{
@@ -246,7 +247,6 @@ const Signup = () => {
                       label="Username"
                       ref={userRef}
                       value={username}
-                      gutterBottom
                       color={
                         userFocus && username && validName ? "success" : "error"
                       }
@@ -296,7 +296,6 @@ const Signup = () => {
                           ? "This is not a valid email address"
                           : ""
                       }
-                      gutterBottom
                       sx={{
                         mb: "20px",
                         width: "300px",
@@ -314,7 +313,7 @@ const Signup = () => {
                       fullWidth
                       onChange={(e) => setUserEmail(e.target.value)}
                       onFocus={() => setEmailFocus(true)}
-                      onBlue={() => setEmailFocus(false)}
+                      onBlur={() => setEmailFocus(false)}
                     >
                       Email Address
                     </TextField>
@@ -327,7 +326,6 @@ const Signup = () => {
                   <div>
                     <TextField
                       variant="standard"
-                      gutterBottom
                       color={pwdFocus && pwd && validPwd ? "success" : "error"}
                       sx={{
                         mb: "20px",
@@ -349,7 +347,7 @@ const Signup = () => {
                       fullWidth
                       onChange={(e) => setPwd(e.target.value)}
                       onFocus={() => setPwdFocus(true)}
-                      onBlue={() => setPwdFocus(false)}
+                      onBlur={() => setPwdFocus(false)}
                       helperText={
                         pwdFocus && pwd && !validPwd
                           ? "8 to 24 characters.  Must include uppercase and lowercase letters, a number and a special character. Allowed special characters:!@#%$"
@@ -367,7 +365,6 @@ const Signup = () => {
                   <div>
                     <TextField
                       variant="standard"
-                      gutterBottom
                       sx={{
                         mb: "20px",
                         width: "300px",
@@ -393,7 +390,7 @@ const Signup = () => {
                       fullWidth
                       onChange={(e) => setMatchPwd(e.target.value)}
                       onFocus={() => setMatchFocus(true)}
-                      onBlue={() => setMatchFocus(false)}
+                      onBlur={() => setMatchFocus(false)}
                       helperText={
                         matchFocus && matchPwd && !validMatch
                           ? "Must match the first password input field"

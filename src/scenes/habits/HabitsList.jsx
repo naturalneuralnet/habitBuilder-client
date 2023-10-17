@@ -29,7 +29,6 @@ const HabitsList = () => {
   const [open, setOpen] = useState(roles[0] === "guest" ? true : false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  console.log(roles);
 
   const updateCurrentView = useCallback(() => {
     if (currentView === "weekly") {

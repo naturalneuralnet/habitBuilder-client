@@ -53,8 +53,6 @@ function getToday() {
 
   const innerDay = [];
 
-  console.log(today);
-
   const sliced_today = today.toLocaleDateString("en-GB").slice(" ");
   const stringDay = today.toLocaleDateString("en-GB").slice(0, 2);
   const d = today.toLocaleDateString("en-GB");
@@ -63,9 +61,6 @@ function getToday() {
   const year = d.slice(6, 10);
   const lengthOfMonth = getDays(year, month);
   const longMonth = today.toLocaleString("en-us", { month: "long" });
-
-  console.log(sliced_today);
-  console.log(dayOfWeek);
 
   innerDay.push({
     today: stringDay,
@@ -107,10 +102,8 @@ const WeeklyHabits = () => {
   let week;
   if (matches) {
     week = getDayName();
-    console.log(week);
   } else {
     week = getToday();
-    console.log(week);
   }
   // const week = getDayName();
 

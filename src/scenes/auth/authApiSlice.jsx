@@ -39,7 +39,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         try {
           const { data } = await queryFulfilled;
 
-          console.log(data); /// dispatch the logout reducer, sets token to null
+          /// dispatch the logout reducer, sets token to null
 
           dispatch(logOut()); /// then the apiSlice . util to reset the api state
 
@@ -63,14 +63,10 @@ export const authApiSlice = apiSlice.injectEndpoints({
         try {
           const { data } = await queryFulfilled;
 
-          console.log(data);
-
           const { accessToken } = data;
 
           dispatch(setCredentials({ accessToken }));
-        } catch (err) {
-          console.log(err);
-        }
+        } catch (err) {}
       },
     }),
 

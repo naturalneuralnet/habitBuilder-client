@@ -167,7 +167,6 @@ const Login = () => {
                     autoComplete="off"
                     variant="standard"
                     label="Username"
-                    gutterBottom
                     color="warning"
                     sx={{
                       "& label": {
@@ -209,7 +208,6 @@ const Login = () => {
                     variant="standard"
                     color="warning"
                     label="Password"
-                    gutterBottom
                     sx={{
                       mb: "20px",
                       width: "300px",
@@ -272,7 +270,6 @@ const Login = () => {
                       cursor: "pointer",
                       borderRadius: "1px",
                     }}
-                    gutterBottom
                     type="submit"
                     onClick={handleSubmit}
                     onTouchStart={handleSubmit}
@@ -293,7 +290,6 @@ const Login = () => {
                       cursor: "pointer",
                       borderRadius: "1px",
                     }}
-                    gutterBottom
                     type="submit"
                     onClick={handleGuestSubmit}
                     // onTouchStart={handleSubmit}
