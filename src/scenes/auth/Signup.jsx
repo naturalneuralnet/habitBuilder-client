@@ -177,7 +177,8 @@ const Signup = () => {
                 className="bevel-button"
                 variant="contained"
                 sx={{
-                  backgroundColor: "#180e0e",
+                  backgroundColor: "#391e1b",
+                  fontFamily: "Montserrat",
                   color: "white",
                   fontSize: "20px",
                   borderRadius: "1px",
@@ -433,7 +434,8 @@ const Signup = () => {
                           !validMatch ? true : false)
                         }
                         sx={{
-                          backgroundColor: "#180e0e",
+                          backgroundColor: "#391e1b",
+                          fontFamily: "Montserrat",
                           color: "white",
                           fontSize: "20px",
                           cursor: "pointer",

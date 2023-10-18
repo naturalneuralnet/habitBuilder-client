@@ -145,7 +145,7 @@ export const tokensLight = reverseTokens(tokensDark);
 
 // this is to make changing the font easier
 const font = ["Roboto", "sans-serif"];
-const font2 = ["Italiana", "sans-serif"];
+const font2 = ["Montserrat", "sans-serif"];
 
 // mui theme settings
 // so this is the theme object directly

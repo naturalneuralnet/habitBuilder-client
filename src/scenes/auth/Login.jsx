@@ -269,6 +269,7 @@ const Login = () => {
                       fontSize: "18px",
                       cursor: "pointer",
                       borderRadius: "1px",
+                      fontFamily: "Montserrat",
                     }}
                     type="submit"
                     onClick={handleSubmit}
@@ -289,6 +290,7 @@ const Login = () => {
                       fontSize: "18px",
                       cursor: "pointer",
                       borderRadius: "1px",
+                      fontFamily: "Montserrat",
                     }}
                     type="submit"
                     onClick={handleGuestSubmit}
@@ -321,7 +323,7 @@ const Login = () => {
                 className="gold"
                 variant="h1"
                 // color="white"
-                fontWeight="bold"
+
                 sx={{ mb: "5px" }}
                 align="center"
               >
@@ -331,7 +333,7 @@ const Login = () => {
                 className="gold"
                 variant="h1"
                 // color="white"
-                fontWeight="bold"
+
                 sx={{ mb: "5px" }}
                 align="center"
               >
@@ -350,7 +352,7 @@ const Login = () => {
                   backgroundColor: "#391e1b",
                   color: "white",
                   fontSize: "18px",
-                  fontFamily: "Italiana",
+                  fontFamily: "Montserrat",
                   borderRadius: "1px",
                 }}
               >
