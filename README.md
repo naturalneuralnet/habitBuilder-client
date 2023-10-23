@@ -62,3 +62,9 @@ On hold. I intend to return to it and add additional functionaility such as:
 - Monthly Habit History
 - Yearly Habit History
 - Guest Login
+
+## License
+
+You can find the License for this project [here](LICENSE.md)
+
+This project is licensed under the terms of the MIT license.
