@@ -260,6 +260,11 @@ const Signup = () => {
                         "& .MuiInputBase-root:hover:before": {
                           borderBottom: "2px solid #5F4126 !important",
                         },
+                        // Styling helper text
+                        "& p": {
+                          color: "#180e0e",
+                          fontSize: 12,
+                        },
                       }}
                       inputProps={{ style: { color: "#180e0e", fontSize: 20 } }} // font size of input text
                       InputLabelProps={{
@@ -306,6 +311,11 @@ const Signup = () => {
                         "& .MuiInputBase-root:hover:before": {
                           borderBottom: "2px solid #5F4126 !important",
                         },
+                        // Styling helper text
+                        "& p": {
+                          color: "#180e0e",
+                          fontSize: 12,
+                        },
                       }}
                       inputProps={{ style: { color: "#180e0e", fontSize: 20 } }} // font size of input text
                       InputLabelProps={{
@@ -337,6 +347,11 @@ const Signup = () => {
                         "& .MuiInputBase-root:hover:before": {
                           borderBottom: "2px solid #5F4126 !important",
                         },
+                        // Styling helper text
+                        "& p": {
+                          color: "#180e0e",
+                          fontSize: 12,
+                        },
                       }}
                       value={pwd}
                       type="password"
@@ -351,7 +366,7 @@ const Signup = () => {
                       onBlur={() => setPwdFocus(false)}
                       helperText={
                         pwdFocus && pwd && !validPwd
-                          ? "8 to 24 characters.  Must include uppercase and lowercase letters, a number and a special character. Allowed special characters:!@#%$"
+                          ? "8 to 24 characters. Must include uppercase and lowercase letters, a number and a special character. Allowed special characters: !@#%$"
                           : ""
                       }
                     >
@@ -375,6 +390,11 @@ const Signup = () => {
                         "& .MuiInputBase-root:hover:before": {
                           borderBottom: "2px solid #5F4126 !important",
                         },
+                        // Styling helper text
+                        "& p": {
+                          color: "#180e0e",
+                          fontSize: 12,
+                        },
                       }}
                       color={
                         matchFocus && matchPwd && validMatch
@@ -394,7 +414,7 @@ const Signup = () => {
                       onBlur={() => setMatchFocus(false)}
                       helperText={
                         matchFocus && matchPwd && !validMatch
-                          ? "Must match the first password input field"
+                          ? "Must match the first password"
                           : ""
                       }
                     >
