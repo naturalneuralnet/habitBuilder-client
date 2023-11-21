@@ -4,13 +4,13 @@ import useAuth from "hooks/useAuth";
 import { Paper } from "@mui/material";
 import leather from "../../assets/basketball.png";
 import new_card from "../../assets/newest_card.png";
+
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 420,
-
   background: "#0e534e",
   backgroundImage: `url(${leather})`,
   backgroundSize: "repeat",
@@ -32,7 +32,6 @@ export default function NewHabitModal({ open, close }) {
             height: "40%",
             margin: "auto",
             borderRadius: "0px",
-
             backgroundImage: `url(${new_card})`,
             backgroundSize: "repeat",
           }}

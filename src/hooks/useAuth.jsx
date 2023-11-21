@@ -7,19 +7,17 @@ import jwtDecode from "jwt-decode";
 // create a new hook called useAuth
 // import jwtDecode and select current token
 // get the current token
-// the defual value is employee
-// return empty usernaame and roles and booleans if tehre is no token
+// the default value is employee
+// return empty usernaame and roles and booleans if there is no token
 // if there is a token
 // decode with jwt decode
 // and check the roles inside the roles array inside userInfo
 // return those if they are there
-// set the status for whicever role is highest, higherStatus
+// set the status for whichever role is highest,
 
 /// courtesy of Dave Grey's Tutorial https://github.com/gitdagray/mern_stack_course)
 const useAuth = () => {
   const token = useSelector(selectCurrentToken);
-
-  //let isManager = false;
 
   let isAdmin = false;
 
@@ -30,11 +28,7 @@ const useAuth = () => {
 
     const { userId, username, roles } = decoded.UserInfo;
 
-    //isManager = roles.includes("Manager");
-
     isAdmin = roles.includes("admin");
-
-    //if (isManager) status = "Manager";
 
     if (isAdmin) status = "admin";
 

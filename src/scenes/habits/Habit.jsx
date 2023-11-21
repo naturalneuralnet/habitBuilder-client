@@ -16,11 +16,9 @@ import {
 } from "./habitsApiSlice";
 import { Box } from "@mui/system";
 
-/// should recieve the habit id
 const Habit = ({ habitId, week }) => {
   const matches = useMediaQuery("(min-width:900px)");
-  /// use selector to select the habit
-  //console.log(habitId);
+
   const habit = useSelector((state) => selectHabitById(state, habitId));
   const { id, name, user, year } = habit;
   const today = new Date();
@@ -56,11 +54,9 @@ const Habit = ({ habitId, week }) => {
     { isSuccess: isDelSuccess, isError: isDelError, error: delerror },
   ] = useDeleteHabitMutation();
 
-  // const navigate = useNavigate();
   const handleComplete = (e) => setDate(e.target.value);
   const theme = useTheme();
 
-  /// local state, not sure I need this but whatever
   const [date, setDate] = useState("");
 
   useEffect(() => {
@@ -75,22 +71,11 @@ const Habit = ({ habitId, week }) => {
     await deleteHabit({ id: habit.id });
   };
 
-  /// okay i need to get the userid from the habit
-  /// and the year from the habit
-  /// check the dates on the year and disable the checkbox if that data is in there
-  /// then create a new year which is updated
-  /// then send that to the backend
-
   const getDays = (year, month) => new Date(year, month, 0).getDate();
 
   const getMonthStreak = (date) => {
-    /// get the current month or the month from that date
-    /// gte the lenght of the month
-
     const month = currentMonth;
-
     const completedDaysLength = habit.year[month].length;
-    // const month = d.slice(3, 5);
     const year = date.slice(6, 10);
     const lengthOfMonth = getDays(year, month);
     const percentage = Math.round((completedDaysLength * 100) / lengthOfMonth);
@@ -254,9 +239,6 @@ const Habit = ({ habitId, week }) => {
           </Typography>
         </Button>
       </Grid>
-      {/* <Grid xs={10} display={matches ? "" : "none"}>
-        <LinearProgressWithLabel value={percent}></LinearProgressWithLabel>
-      </Grid> */}
     </Grid>
   );
 };

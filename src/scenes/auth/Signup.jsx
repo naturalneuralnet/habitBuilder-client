@@ -43,7 +43,6 @@ const Signup = () => {
   const [validMatch, setValidMatch] = useState(false);
   const [matchFocus, setMatchFocus] = useState(false);
 
-  /// err message
   const [errMsg, setErrMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
 
@@ -82,11 +81,8 @@ const Signup = () => {
     setErrMsg("");
   }, [username, pwd, matchPwd, userEmail]);
 
-  /// const handleSubmit
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    /// if the signup button is enabled with the javascript hack
 
     const userV = USER_REGEX.test(username);
     const pwdV = PWD_REGEX.test(pwd);
@@ -97,18 +93,7 @@ const Signup = () => {
     }
 
     try {
-      /// dispatch to register or signup url
-      /// should get an accesstoken or verification token back
-      /// catch and display any errors
-      /// cleanup the variables by clearing them
-      // the unwrap is needed for the error to be caught
       const { message } = await signup({ username, userEmail, pwd }).unwrap();
-      console.log(message);
-      // console.log("IS SUCCESS");
-      // console.log(isSuccess);
-      // setSuccessMsg(data.message);
-      // setTimeout(() => {
-      // }, 1000);
       navigate(`/login/check/${userEmail}`);
     } catch (err) {
       console.log(err);

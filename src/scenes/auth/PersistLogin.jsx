@@ -11,9 +11,11 @@ const PersistLogin = () => {
 
   const token = useSelector(selectCurrentToken); /// for react 18 handling strict mode
 
-  const effectRan = useRef(false); ///
+  const effectRan = useRef(false);
 
-  const [trueSuccess, setTrueSuccess] = useState(false); /// refresh mutation, isUninationalized - it hasnt been called yet
+  const [trueSuccess, setTrueSuccess] = useState(false);
+
+  /// refresh mutation, isUninitialized - it hasnt been called yet
 
   const [refresh, { isUninitialized, isLoading, isSuccess, isError, error }] =
     useRefreshMutation(); /// for dealing with strict mode
@@ -24,19 +26,15 @@ const PersistLogin = () => {
     if (effectRan.current === true || process.env.NODE_ENV !== "development") {
       // React 18 Strict Mode
 
-      /// verify the refresh token, doesn't get the refresh token just checks that its there?
-
       const verifyRefreshToken = async () => {
         try {
-          //const response =
-
-          await refresh(); //const { accessToken } = response.data /// yes the data has gotten
+          await refresh();
 
           setTrueSuccess(true);
         } catch (err) {
           console.error(err);
         }
-      }; /// if there is no token then verify the refresh token to get a new token
+      }; /// if there is no token then get a new token
 
       if (!token && persist) verifyRefreshToken();
     } /// strictmode is set to true so its true the next time
@@ -47,8 +45,6 @@ const PersistLogin = () => {
   let content; /// if no persist, says not logged in
 
   if (!persist) {
-    // persist: no
-
     content = <Outlet />;
   } /// loading when there is no token
   else if (isLoading) {

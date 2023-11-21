@@ -21,7 +21,7 @@ import nat from "../../assets/green-frame-nature.gif";
 
 // Adapted from Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course
 const Login = () => {
-  // use to set focus on user input
+  // used to set focus on user input
   const userRef = useRef();
   const errRef = useRef();
   // local state
@@ -48,16 +48,6 @@ const Login = () => {
     setErrMsg("");
   }, [username, password]);
 
-  /// async function
-  /// prevent default so it doesnt reload
-  // try catch block and recieve an error in the catch
-  /// get the acccess token form the login hook and pass in username and password and unwrap to cathc the err
-  // dispatch set credentials with our access token
-  /// clearing setUsername and password
-  /// then we have navigate to take us to the dash if we login
-  /// the cathc block if we have dont have an error then its no server response
-  /// check the errors and reply or set the error message
-  /// then we have the err Ref so the focus is on the error
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -117,12 +107,6 @@ const Login = () => {
   const errClass = errMsg ? "errmsg" : "offscreen";
   /// is loading state until its finsihed loading
   if (isLoading) return <p>Loading...</p>;
-
-  /// content
-  ///section and header
-  /// form input for username and password, applying userref and state username to value
-  /// passowrd input type is password
-  // aria live assertive for error so a screen reader will read it
 
   const content = (
     <>
@@ -277,9 +261,7 @@ const Login = () => {
                   >
                     LOG IN
                   </Button>
-                  {/* <IconButton href="/">
-                    <CottageIcon></CottageIcon>
-                  </IconButton> */}
+
                   <Button
                     m={"5px"}
                     className="bevel-button"
@@ -294,7 +276,6 @@ const Login = () => {
                     }}
                     type="submit"
                     onClick={handleGuestSubmit}
-                    // onTouchStart={handleSubmit}
                   >
                     LOG IN As GUEST
                   </Button>
@@ -322,8 +303,6 @@ const Login = () => {
               <Typography
                 className="gold"
                 variant="h1"
-                // color="white"
-
                 sx={{ mb: "5px" }}
                 align="center"
               >
@@ -332,8 +311,6 @@ const Login = () => {
               <Typography
                 className="gold"
                 variant="h1"
-                // color="white"
-
                 sx={{ mb: "5px" }}
                 align="center"
               >
@@ -341,7 +318,6 @@ const Login = () => {
               </Typography>
             </Box>
             <Box display={"flex"} justifyContent={"center"} padding={"10px"}>
-              {/* <LottieGif></LottieGif> */}
               <img src={nat} alt="nature_gif"></img>
             </Box>
             <Box display={"flex"} justifyContent={"center"}>

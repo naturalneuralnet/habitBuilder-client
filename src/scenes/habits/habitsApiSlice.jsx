@@ -8,7 +8,6 @@ const habitsAdapter = createEntityAdapter({});
 
 const initialState = habitsAdapter.getInitialState();
 
-// inject the endpoint into the api slice
 //Adapted from Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course
 export const habitsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -55,25 +54,17 @@ export const habitsApiSlice = apiSlice.injectEndpoints({
       validateStatus: (response, result) => {
         return response.status === 200 && !result.isError;
       },
-      /// only in developlment, or 60s in prod.
-      /// takes the Habit._id and transforms it to Habit.id so it works with
-      // the redux toolkit enitity adapter and mongo db's convention of referring to the id as _id
-      /// so we can use the normalized data
+
       transformResponse: (responseData) => {
         const loadedhabits = responseData.map((habit) => {
           habit.id = habit._id;
-          //console.log(habit);
+
           return habit;
         });
-        //console.log(loadedhabits);
-        /// sets all of the habits using the habits adapter. so the data is normalized
+
         return habitsAdapter.setAll(initialState, loadedhabits);
       },
       providesTags: (result, error, arg) => {
-        // you might get a result that doesn't have ids
-        // this checks if it has ids and if it doesnt it will reurn the else
-        // which is just the Habit and the id List
-        //console.log(result);
         if (result?.ids) {
           return [
             { type: "Habit", id: "LIST" },
@@ -82,8 +73,7 @@ export const habitsApiSlice = apiSlice.injectEndpoints({
         } else return [{ type: "Habit", id: "LIST" }];
       },
     }),
-    // builder.mutation
-    // using the post method
+
     addNewHabit: builder.mutation({
       query: (initialHabitData) => ({
         url: "/habits/new",
@@ -109,7 +99,6 @@ export const habitsApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: (result, error, arg) => [{ type: "Habit", id: arg.id }],
     }),
     /// just pass in the id to delete
-    // invalidating the deleted Habit
     deleteHabit: builder.mutation({
       query: ({ id }) => ({
         url: `/habits/delete`,
@@ -121,7 +110,6 @@ export const habitsApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-/// exports the hook for us to use
 export const {
   useGetAllHabitsQuery,
   useAddNewHabitMutation,
@@ -129,30 +117,18 @@ export const {
   useDeleteHabitMutation,
 } = habitsApiSlice;
 
-// returns the query result object, by calling the habitspislice, enpoints, gethabits hook and the select mehtod on that hook
-
 export const selectHabitsResult =
   habitsApiSlice.endpoints.getAllHabits.select();
 
-// creates memoized selector
-// pass in selecthabitsResult from above and selects the data part
 const selectHabitsData = createSelector(
   selectHabitsResult,
-  (habitsResult) => habitsResult.data // normalized state object with ids & entities
+  (habitsResult) => habitsResult.data
 );
 
-// this is not exported
-
-//another memoized selector
-
-//getSelectors creates these selectors and we rename them with aliases using destructuring
-/// renameing them to apply to habits.
 export const {
   selectAll: selectAllHabits,
   selectById: selectHabitById,
   selectIds: selectHabitIds,
-  // Pass in a selector that returns the habits slice of state
-  // we habits getSlecteros on the habitsAdapter to get the habits data with the memoized selector, if its null it returns the initial state
 } = habitsAdapter.getSelectors(
   (state) => selectHabitsData(state) ?? initialState
 );

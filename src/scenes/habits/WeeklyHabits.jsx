@@ -105,9 +105,7 @@ const WeeklyHabits = () => {
   } else {
     week = getToday();
   }
-  // const week = getDayName();
 
-  // const dayWeek = getToday();
   let content;
 
   if (isLoading) content = <p>Loading...</p>;
@@ -119,8 +117,6 @@ const WeeklyHabits = () => {
   if (isSuccess) {
     const { ids, entities } = habits;
 
-    // console.log("IDS of the habits");
-    // console.log(ids);
     const filteredHabits = Object.values(habits.entities).filter(
       (habit) => habit.user === userId
     );

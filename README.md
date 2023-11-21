@@ -1,8 +1,10 @@
 ## About
 
-A habit tracker, based on my own method of building habits. What sets this tracker apart from others is that progress is minatined even if days are missed. This makes it easier to build up habits. 
+A habit tracker, based on my own method of building habits.Progress is maintained even if days are missed. This makes it easier to build up habits. 
 
-You can make check it out here. Either create an account or login as a guest. 
+You can make check it out here: habitmaker.onrender.com/
+
+Either create an account or login as a guest. 
 
 ![Alt text](<src/assets/Screenshot 2023-10-08 at 18-16-00 Habit Builder.png>)
 
@@ -17,17 +19,19 @@ You can make check it out here. Either create an account or login as a guest.
 
 ## Local Setup
 
-Clone or download the front-end
+Clone or download the habit-maker-client
 
-install dependencies with 
+Install dependencies with 
 
 `npm install`
 
-change the api endpoint inside apiSlice to the local host you will be running the backend on
+Change the API endpoint inside src/state/apiSlice to the URL you are running the server on.
+
+![Alt text](image.png)
 
 use `npm run start` to run the front end
 
-Clone or download the backend and follow the usage instructions for it. 
+Clone or download the server and follow the usage instructions for it. 
 
 
 ## Technologies Used
@@ -46,7 +50,7 @@ Clone or download the backend and follow the usage instructions for it.
 - Redux Toolkit Tutorial [here](https://redux.js.org/tutorials/essentials/part-1-overview-concepts)
 
 
-__Assets:__
+**Assets:**
 - Note book icon by [Ehtisham Abid](https://www.flaticon.com/free-icons/note-book)
 - Tree & Water GIF by [Susan Cipriano](https://pixabay.com/users/susan-lu4esm-7009216/?utm_source=link-attribution&utm_medium=referral&utm_campaign=animation&utm_content=8121) 
 - Green & Gold Frame PNG by [PNGWING](https://www.pngwing.com/en/free-png-vaqyv)

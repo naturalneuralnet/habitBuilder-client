@@ -5,7 +5,6 @@ import { selectUserById } from "./usersApiSlice";
 import { Button, Grid, Typography, useTheme } from "@mui/material";
 
 const User = ({ userId }) => {
-  // select the user by id with the memoized selector
   const theme = useTheme();
   const user = useSelector((state) => selectUserById(state, userId));
   const navigate = useNavigate();
@@ -14,8 +13,6 @@ const User = ({ userId }) => {
     const handleEdit = () => navigate(`/dash/users/${userId}`);
 
     const userRolesString = user.roles.toString().replaceAll(",", ", ");
-
-    // const cellStatus = user.active ? "" : "table__cell--inactive";
 
     return (
       <>

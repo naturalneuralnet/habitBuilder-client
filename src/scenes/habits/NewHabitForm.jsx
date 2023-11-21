@@ -14,9 +14,6 @@ const NewHabitForm = ({ user, open, close }) => {
   const [name, setName] = useState("");
   const [userId, setUserId] = useState(user);
 
-  // if creating a user is successful it will empty out the local state
-  /// and navigate back to the users page
-
   useEffect(() => {
     if (isSuccess) {
       console.log("Resetting name");
@@ -33,8 +30,6 @@ const NewHabitForm = ({ user, open, close }) => {
 
   const canSave = [name, userId].every(Boolean) && !isLoading;
 
-  /// then we call the addnewuser function and add the new user
-
   const onSaveHabitClicked = async (e) => {
     e.preventDefault();
     console.log("save habit clicked");
@@ -43,16 +38,6 @@ const NewHabitForm = ({ user, open, close }) => {
       close(true);
     }
   };
-  /// classes to apply depending on how valid things are
-  /// the form input incomplete class will highlight them in read if the inout is not valid
-
-  /// error message are at the top of the form
-  /// then tehre is the form, onsubmit calls onsaveuserlcicked
-  /// button to save is not shown then the button is disabled
-  /// label for input for usernmae
-  // input for username
-  // same for password
-  // then for the roles, multiple is set to true so you can select multiple values with three visible so there is no dropdown
 
   const content = (
     <>
@@ -80,22 +65,7 @@ const NewHabitForm = ({ user, open, close }) => {
               >
                 Add Habit
               </Typography>
-              {/* <Typography
-                gutterBottom
-                m={"5px"}
-                variant="h4"
-                color={theme.palette.primary.main}
-              >
-                Build up habits!
-              </Typography> */}
-              {/* <Divider
-                className="divider"
-                variant="middle"
-                sx={{
-                  borderColor: theme.palette.primary.main,
-                  width: "100%",
-                }}
-              ></Divider> */}
+
               <Typography
                 gutterBottom
                 m={"5px"}

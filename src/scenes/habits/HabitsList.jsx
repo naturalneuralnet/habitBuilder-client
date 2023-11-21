@@ -33,20 +33,10 @@ const HabitsList = () => {
   const updateCurrentView = useCallback(() => {
     if (currentView === "weekly") {
       setToShow(<WeeklyHabits></WeeklyHabits>);
-      //console.log("weekly");
-      // console.log(toShow);
-      // return toShow;
     } else if (currentView === "monthly") {
       setToShow(<MonthlyHabit></MonthlyHabit>);
-      //console.log("monthly");
-      // console.log(toShow);
-
-      // return toShow;
     } else if (currentView === "yearly") {
       setToShow(<YearlyHabits></YearlyHabits>);
-      //console.log("Yearly");
-      // console.log(toShow);
-      // return toShow;
     }
   }, [currentView]);
 
@@ -78,7 +68,6 @@ const HabitsList = () => {
               sx={{
                 padding: "15px",
                 borderRadius: "1px",
-                // border: "#311d19 solid 8px",
                 background: "#ded0b9",
                 backgroundImage: `url(${new_card})`,
                 backgroundSize: "repeat",
@@ -138,13 +127,6 @@ const HabitsList = () => {
                   key="one"
                   value="weekly"
                   onClick={(e) => setCurrentView(e.target.value)}
-                  // fontSize={{ sm: "0.6rem", md: "0.8rem", lg: "1rem" }}
-                  sx={
-                    {
-                      // backgroundImage: `url(${fancy})`,
-                      // backgroundSize: "repeat",
-                    }
-                  }
                 >
                   Weekly
                 </Button>
@@ -153,13 +135,6 @@ const HabitsList = () => {
                   key="two"
                   value="monthly"
                   onClick={(e) => setCurrentView(e.target.value)}
-                  // fontSize={{ sm: "0.6rem", md: "0.8rem", lg: "1rem" }}
-                  sx={
-                    {
-                      // backgroundImage: `url(${fancy})`,
-                      // backgroundSize: "repeat",
-                    }
-                  }
                 >
                   Monthly
                 </Button>
@@ -168,14 +143,6 @@ const HabitsList = () => {
                   key="three"
                   value="yearly"
                   onClick={(e) => setCurrentView(e.target.value)}
-                  // fontSize={{ sm: "0.6rem", md: "0.8rem", lg: "1rem" }}
-                  sx={
-                    {
-                      // background: "#180e0e",
-                      // backgroundImage: `url(${leather})`,
-                      // backgroundSize: "repeat",
-                    }
-                  }
                 >
                   Yearly
                 </Button>
@@ -244,7 +211,6 @@ const HabitsList = () => {
         }}
       >
         <Paper
-          // className="paper-back"
           sx={{
             background: "#ded0b9",
             backgroundImage: `url(${new_card})`,

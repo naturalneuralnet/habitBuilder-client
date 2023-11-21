@@ -13,13 +13,9 @@ const Intro = () => {
   const splitPath = pathname.split("/");
   const confirmationCode = splitPath[3];
 
-  /// or use useParams
-
   useEffect(() => {
     verify(confirmationCode);
   }, [confirmationCode, verify]);
-
-  /// add a conditional here
 
   let content;
 

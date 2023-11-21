@@ -1,15 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setCredentials } from "scenes/auth/authSlice";
 
-// https://habitmaker-api-ma96.onrender.com///http://localhost:5001/
+// https://habitmaker-api-ma96.onrender.com ///http://localhost:5001/
 // Adapted from Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course
 const baseQuery = fetchBaseQuery({
   baseUrl: "https://habitmaker-api-ma96.onrender.com",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.token;
-    //console.log(token);
-
     if (token) {
       headers.set("authorization", `Bearer ${token}`);
     }
@@ -18,10 +16,6 @@ const baseQuery = fetchBaseQuery({
 });
 
 const baseQueryWithReauth = async (args, api, extraOptions) => {
-  // console.log(args) // request url, method, body
-  // console.log(api) // signal, dispatch, getState()
-  // console.log(extraOptions) //custom like {shout: true}
-
   let result = await baseQuery(args, api, extraOptions);
 
   // If you want, handle other status codes, too
@@ -53,5 +47,3 @@ export const apiSlice = createApi({
   tagTypes: ["Habit", "User"],
   endpoints: (builder) => ({}),
 });
-
-//export const { useGetUserQuery } = api;

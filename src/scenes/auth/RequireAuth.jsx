@@ -7,11 +7,6 @@ const RequireAuth = ({ allowedRoles }) => {
   // gets the current users rules
   const { roles } = useAuth();
 
-  /// if the user has the allowed role show them it
-  /// if not they need to go to login
-  // outlet is all of the children
-  /// replace this ensures the back button works
-
   const content = roles.some((role) => allowedRoles.includes(role)) ? (
     <Outlet />
   ) : (

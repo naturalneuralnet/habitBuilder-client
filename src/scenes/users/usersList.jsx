@@ -3,7 +3,7 @@ import User from "./User";
 import { Grid, Paper, Box, useTheme, Typography } from "@mui/material";
 import new_card from "../../assets/newest_card.png";
 import leather from "../../assets/basketball.png";
-// destructures the data from getUsersQuery
+
 const UsersList = () => {
   const {
     data: users,
@@ -14,8 +14,6 @@ const UsersList = () => {
   } = useGetUsersQuery();
   const theme = useTheme();
 
-  // const userIDs = useSelector((state) => selectUserIds(state));
-  // const userID = userIDs[0];
   let content;
   // if is loading then put a loading para
   if (isLoading) content = <p>Loading...</p>;
@@ -25,9 +23,8 @@ const UsersList = () => {
   }
   // if it is successful
   if (isSuccess) {
-    // destructure the ids from the users data, we could destructure the entities here as well
     const { ids } = users;
-    /// check there are ids and then map over each id and pass in the userID
+
     const tableContent = ids?.length
       ? ids.map((userId) => <User key={userId} userId={userId} />)
       : null;
