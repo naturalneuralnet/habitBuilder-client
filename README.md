@@ -1,8 +1,8 @@
 ## About
 
-A habit tracker, based on my own method of building habits.Progress is maintained even if days are missed. This makes it easier to build up habits. 
+A habit tracker, based on my own method of building habits. Progress is maintained even if days are missed. Making it easier to build habits. 
 
-You can make check it out here: habitmaker.onrender.com/
+You can check it out [here](https://habitmaker.onrender.com)
 
 Either create an account or login as a guest. 
 
@@ -19,7 +19,7 @@ Either create an account or login as a guest.
 
 ## Local Setup
 
-Clone or download the habit-maker-client
+Clone or download this repository, the habitMaker-client
 
 Install dependencies with 
 
@@ -29,9 +29,11 @@ Change the API endpoint inside src/state/apiSlice to the URL you are running the
 
 ![Alt text](image.png)
 
-use `npm run start` to run the front end
+Use `npm run start` to run the client.
 
-Clone or download the server and follow the usage instructions for it. 
+You must have the server setup and running on the same machine with the correct configuration for the entire application to work. 
+
+Clone or download the server and follow the usage instructions for it. You can find it [here](https://github.com/naturalneuralnet/habitBuilder-server)
 
 
 ## Technologies Used
@@ -65,7 +67,6 @@ On hold. I intend to return to it and add additional functionaility such as:
 - OAuth Login with Google
 - Monthly Habit History
 - Yearly Habit History
-- Guest Login
 
 ## License
 
