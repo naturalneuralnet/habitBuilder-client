@@ -13,6 +13,7 @@ import useAuth from "hooks/useAuth";
 import NewHabitModal from "./NewHabitModal";
 import WeeklyHabits from "./WeeklyHabits";
 import MonthlyHabit from "./MonthlyHabit";
+import NewMonthlyHabit from "./NewMonthlyHabit";
 import YearlyHabits from "./YearlyHabits";
 import leather from "../../assets/basketball.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -34,7 +35,7 @@ const HabitsList = () => {
     if (currentView === "weekly") {
       setToShow(<WeeklyHabits></WeeklyHabits>);
     } else if (currentView === "monthly") {
-      setToShow(<MonthlyHabit></MonthlyHabit>);
+      setToShow(<NewMonthlyHabit></NewMonthlyHabit>);
     } else if (currentView === "yearly") {
       setToShow(<YearlyHabits></YearlyHabits>);
     }

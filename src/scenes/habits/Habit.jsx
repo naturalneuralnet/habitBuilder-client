@@ -7,6 +7,7 @@ import {
   Typography,
   Stack,
   Grid,
+  ButtonBase,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import {
@@ -103,7 +104,8 @@ const Habit = ({ habitId, week }) => {
       {/* NAME */}
       <Grid
         item
-        xs={matches ? 2 : 4}
+        // xs={matches ? 2 : 4}
+        width={"70px"}
         borderTop={"#5F4126 solid 1px"}
         borderBottom={"#5F4126 solid 1px"}
         borderRight={"#5F4126 solid 1px"}
@@ -111,7 +113,7 @@ const Habit = ({ habitId, week }) => {
       >
         <Stack direction="column">
           <Typography
-            fontSize={{ sm: "0.9rem", md: "1rem", lg: "1.3rem" }}
+            fontSize={{ sm: "0.9rem", md: "1rem", lg: "0.9rem" }}
             m={"4px"}
             color={theme.palette.primary.main}
             fontWeight="bold"
@@ -124,42 +126,48 @@ const Habit = ({ habitId, week }) => {
       {/* CHECKBOXES */}
       {/* <Stack direction="column"> */}
       {formattedDaysAndCompletions.map((day) => (
-        <Grid
-          item
-          xs={matches ? 1 : 4}
-          borderTop={"#5F4126 solid 1px"}
-          borderBottom={"#5F4126 solid 1px"}
-          borderLeft={"#5F4126 solid 1px"}
-          borderRight={"#5F4126 solid 1px"}
-          align={"center"}
-          backgroundColor={todayString === day.date ? "#001f1e" : "#ded0b9"}
+        <ButtonBase
+          onChange={handleComplete}
+          // checked={day.completed}
+          // disabled={day.completed}
+          value={day.date}
+          disabled={day.date > todayString ? true : false}
+          onClick={(e) => onCheckBoxClicked(e, day)}
         >
-          <Checkbox
-            sx={{
-              cursor: "pointer",
-              margin: "5px",
-              backgroundColor:
-                todayString === day.date
-                  ? "#0e534e"
-                  : theme.palette.primary.main,
+          <Grid
+            item
+            width={"36px"}
+            height={"40px"}
+            // xs={matches ? 1 : 4}
+            border={"#7f6751 solid 1px"}
+            align={"center"}
+            backgroundColor={day.completed ? "#0e534e" : ""}
+            // backgroundColor={todayString === day.date ? "#0e534e" : "#ded0b9"}
+          >
+            {/* <Checkbox
+              sx={{
+                cursor: "pointer",
+                margin: "2px",
+                backgroundColor: todayString === day.date ? "#0e534e" : "",
 
-              "& .MuiSvgIcon-root": {
-                fontSize: { xs: "0.5", sm: "0.9rem", md: "1rem", lg: "1.5rem" },
-              },
-            }}
-            onChange={handleComplete}
-            checked={day.completed}
-            disabled={day.completed}
-            value={day.date}
-            onClick={(e) => onCheckBoxClicked(e, day)}
-          />
-        </Grid>
+                "& .MuiSvgIcon-root": {
+                  fontSize: {
+                    xs: "0.5",
+                    sm: "0.9rem",
+                    md: "1rem",
+                    lg: "0.9rem",
+                  },
+                },
+              }}
+            /> */}
+          </Grid>
+        </ButtonBase>
       ))}
-
       <Grid
         item
         display={matches ? "" : "none"}
-        xs={1}
+        // xs={1}
+        width={"60px"}
         borderTop={"#5F4126 solid 1px"}
         borderBottom={"#5F4126 solid 1px"}
         borderLeft={"#5F4126 solid 1px"}
@@ -178,9 +186,9 @@ const Habit = ({ habitId, week }) => {
         >
           {" "}
           <Typography
-            m={"4px"}
+            m={"6px"}
             align="center"
-            fontSize={{ sm: "0.9rem", md: "1rem", lg: "1.3rem" }}
+            fontSize={{ sm: "0.9rem", md: "1rem", lg: "1rem" }}
             color={theme.palette.primary.main}
           >
             {percent}%
@@ -190,17 +198,25 @@ const Habit = ({ habitId, week }) => {
       <Grid
         item
         display={matches ? "" : "none"}
-        xs={1}
+        // xs={1}
+        width={"60px"}
         borderTop={"#5F4126 solid 1px"}
         borderBottom={"#5F4126 solid 1px"}
         borderLeft={"#5F4126 solid 1px"}
         borderRight={"#5F4126 solid 1px"}
-        align="center"
+        textAlign={"center"}
       >
-        <Box width={`${lastMonthPercent}%`} sx={{ backgroundColor: "green" }}>
+        <Box
+          width={`${lastMonthPercent}%`}
+          sx={{
+            backgroundColor: "green",
+            display: "flex",
+            textAlign: "center",
+          }}
+        >
           <Typography
-            m={"4px"}
-            fontSize={{ sm: "0.9rem", md: "1rem", lg: "1.3rem" }}
+            m={"6px"}
+            fontSize={{ sm: "0.9rem", md: "1rem", lg: "1rem" }}
             color={theme.palette.primary.main}
           >
             {lastMonthPercent}%
@@ -210,7 +226,8 @@ const Habit = ({ habitId, week }) => {
       <Grid
         item
         // display={matches ? "" : "none"}
-        xs={matches ? 1 : 4}
+        // xs={matches ? 1 : 4}
+        width={"65px"}
         borderTop={"#5F4126 solid 1px"}
         borderBottom={"#5F4126 solid 1px"}
         borderLeft={"#5F4126 solid 1px"}
