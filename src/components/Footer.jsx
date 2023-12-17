@@ -7,7 +7,13 @@ const Footer = () => {
   const theme = useTheme();
 
   let githubButton = (
-    <IconButton>
+    <IconButton
+      type="link"
+      href="https://github.com/naturalneuralnet/crt-timer"
+      sx={{
+        color: "white",
+      }}
+    >
       <GitHubIcon sx={{ fontSize: "25px" }}></GitHubIcon>
     </IconButton>
   );
@@ -26,7 +32,7 @@ const Footer = () => {
       <Toolbar sx={{ justifyContent: "space-between" }}>
         {githubButton}
 
-        <p>Copyright @ naturalneuralnet</p>
+        <p>Copyright @naturalneuralnet</p>
       </Toolbar>
     </AppBar>
   );
