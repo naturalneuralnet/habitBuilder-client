@@ -22,9 +22,14 @@ import new_card from "../../assets/newest_card.png";
 
 // Adapted from Dave Grey's Tutorial: https://github.com/gitdagray/mern_stack_course
 const HabitsList = () => {
-  const matches = useMediaQuery("(min-width:900px)");
+  /// max-width: less than or equal to
+  // min-width: greater than or equal to
+  /// monthly view when the port is greater than 1000
+  /// weekly view when the port is greater than 600
+  const large_match = useMediaQuery("(max-width:900px)");
+  // const medium_match = useMediaQuery("(max-width:1300px)");
   const [currentView, setCurrentView] = useState("Weekly");
-  const [toShow, setToShow] = useState(<WeeklyHabits></WeeklyHabits>);
+  const [toShow, setToShow] = useState();
 
   const { username, roles } = useAuth();
   const [open, setOpen] = useState(roles[0] === "guest" ? true : false);
@@ -32,13 +37,14 @@ const HabitsList = () => {
   const handleClose = () => setOpen(false);
 
   const updateCurrentView = useCallback(() => {
-    if (currentView === "weekly") {
-      setToShow(<WeeklyHabits></WeeklyHabits>);
-    } else if (currentView === "monthly") {
+    if (large_match) {
       setToShow(<NewMonthlyHabit></NewMonthlyHabit>);
-    } else if (currentView === "yearly") {
-      setToShow(<YearlyHabits></YearlyHabits>);
+    } else {
+      setToShow(<WeeklyHabits></WeeklyHabits>);
     }
+    //else if (currentView === "yearly") {
+    //   setToShow(<YearlyHabits></YearlyHabits>);
+    // }
   }, [currentView]);
 
   useEffect(() => {
@@ -110,7 +116,7 @@ const HabitsList = () => {
               // },
             }}
           >
-            <Box
+            {/* <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -148,7 +154,7 @@ const HabitsList = () => {
                   Yearly
                 </Button>
               </ButtonGroup>
-            </Box>
+            </Box> */}
             <Box
               sx={{
                 display: "flex",
@@ -171,7 +177,7 @@ const HabitsList = () => {
               <Button
                 className="bevel-button"
                 variant="filled"
-                size={matches ? "large" : "small"}
+                size={large_match ? "large" : "small"}
                 key="one"
                 sx={{ backgroundColor: "#0e534e" }}
                 onClick={handleOpen}
@@ -212,6 +218,7 @@ const HabitsList = () => {
         }}
       >
         <Paper
+          overflow={"scroll"}
           sx={{
             background: "#ded0b9",
             backgroundImage: `url(${new_card})`,
@@ -221,7 +228,7 @@ const HabitsList = () => {
           }}
           elevation={4}
         >
-          {toShow}
+          <NewMonthlyHabit></NewMonthlyHabit>
         </Paper>
       </Box>
     </Box>

@@ -76,7 +76,7 @@ function getToday() {
 }
 
 const WeeklyHabits = () => {
-  const matches = useMediaQuery("(min-width:900px)");
+  const matches = useMediaQuery("(min-width:500px)");
   const theme = useTheme();
   const { userId, isAdmin } = useAuth();
   const {
@@ -149,7 +149,8 @@ const WeeklyHabits = () => {
       <Grid container>
         <Grid
           item
-          xs={matches ? 2 : 4}
+          xs={1}
+          // xs={matches ? 1 : 4}
           sx={{
             borderTop: "#5F4126 solid 2px",
             borderBottom: "#5F4126 solid 2px",
@@ -160,7 +161,7 @@ const WeeklyHabits = () => {
           <Typography
             textAlign={"center"}
             color={theme.palette.primary.main}
-            fontSize={{ xs: "0.5", sm: "0.9rem", md: "1rem", lg: "1.3rem" }}
+            fontSize={{ xs: "0.7", sm: "0.8rem", md: "0.9rem", lg: "1rem" }}
           >
             {today}
           </Typography>
@@ -168,7 +169,8 @@ const WeeklyHabits = () => {
         {week.map((day) => (
           <Grid
             item
-            xs={matches ? 1 : 4}
+            xs={1}
+            // xs={matches ? 1 : 4}
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -185,10 +187,10 @@ const WeeklyHabits = () => {
               sx={{
                 backgroundColor: "",
                 fontSize: {
-                  xs: "0.9rem",
-                  sm: "0.9rem",
-                  md: "1rem",
-                  lg: "1.3rem",
+                  xs: "0.7rem",
+                  sm: "0.8rem",
+                  md: "0.9rem",
+                  lg: "1rem",
                 },
                 height: "auto",
                 width: "auto",
@@ -204,7 +206,7 @@ const WeeklyHabits = () => {
         ))}
         <Grid
           item
-          display={matches ? "" : "none"}
+          // display={matches ? "" : "none"}
           xs={1}
           textAlign={"center"}
           sx={{
@@ -215,7 +217,7 @@ const WeeklyHabits = () => {
           }}
         >
           <Typography
-            fontSize={{ sm: "0.9rem", md: "1rem", lg: "1.3rem" }}
+            fontSize={{ sm: "0.8rem", md: "0.9rem", lg: "1rem" }}
             color={"black"}
           >
             {currentMonthString}
@@ -223,7 +225,7 @@ const WeeklyHabits = () => {
         </Grid>
         <Grid
           item
-          display={matches ? "" : "none"}
+          // display={matches ? "" : "none"}
           xs={1}
           textAlign={"center"}
           sx={{
@@ -242,7 +244,8 @@ const WeeklyHabits = () => {
         </Grid>
         <Grid
           item
-          xs={matches ? 2 : 4}
+          xs={1}
+          // xs={matches ? 2 : 4}
           textAlign={"center"}
           sx={{
             borderTop: "#5F4126 solid 2px",

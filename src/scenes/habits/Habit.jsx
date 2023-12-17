@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import DeleteIcon from "@mui/icons-material/Delete";
 import {
   useTheme,
   Button,
@@ -8,6 +9,9 @@ import {
   Stack,
   Grid,
   ButtonBase,
+  IconButton,
+  Icon,
+  Tooltip,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import {
@@ -18,10 +22,10 @@ import {
 import { Box } from "@mui/system";
 
 const Habit = ({ habitId, week }) => {
-  const matches = useMediaQuery("(min-width:900px)");
+  const matches = useMediaQuery("(min-width:1000px)");
 
   const habit = useSelector((state) => selectHabitById(state, habitId));
-  const { id, name, user, year } = habit;
+  const { id, name, user, year, goal } = habit;
   const today = new Date();
   const todayString = today.toLocaleDateString("en-GB");
   const currentMonth = today.getMonth();
@@ -99,52 +103,93 @@ const Habit = ({ habitId, week }) => {
     }
   };
 
+  let content;
+
+  const handleOptionsOpen = () => {
+    content = (
+      <IconButton
+        sx={{
+          backgroundColor: "#960507",
+          color: "white",
+          cursor: "pointer",
+        }}
+      >
+        <DeleteIcon onClick={onDeleteHabitClicked}></DeleteIcon>
+      </IconButton>
+    );
+  };
+
   return (
-    <Grid container padding={"0px"}>
+    <Grid container wrap={"nowrap"}>
       {/* NAME */}
       <Grid
         item
-        // xs={matches ? 2 : 4}
-        width={"70px"}
+        xs={matches ? 1 : 3}
+        // xs={matches ? 1 : 1}
+        // width={"70px"}
         borderTop={"#5F4126 solid 1px"}
         borderBottom={"#5F4126 solid 1px"}
         borderRight={"#5F4126 solid 1px"}
         borderLeft={"#5F4126 solid 1px"}
+        onMouseOver={handleOptionsOpen}
+        textAlign={"center"}
       >
-        <Stack direction="column">
+        <Stack direction="row">
           <Typography
-            fontSize={{ sm: "0.9rem", md: "1rem", lg: "0.9rem" }}
-            m={"4px"}
+            fontSize={{ xs: "0.7", sm: "0.8rem", md: "0.9rem", lg: "1rem" }}
             color={theme.palette.primary.main}
             fontWeight="bold"
-            textAlign={"center"}
+            sx={{
+              "&:hover": {},
+            }}
+            margin={"6px"}
           >
             {habit.name}
           </Typography>
+          <Tooltip title="Delete">
+            <IconButton sx={{ cursor: "pointer" }}>
+              <DeleteIcon
+                onClick={onDeleteHabitClicked}
+                sx={{
+                  color: "#960507",
+                  fontSize: { sm: "0.9rem", md: "0.9rem", lg: "1rem" },
+                }}
+              ></DeleteIcon>
+            </IconButton>
+          </Tooltip>
         </Stack>
       </Grid>
       {/* CHECKBOXES */}
       {/* <Stack direction="column"> */}
       {formattedDaysAndCompletions.map((day) => (
-        <ButtonBase
-          onChange={handleComplete}
-          // checked={day.completed}
-          // disabled={day.completed}
-          value={day.date}
-          disabled={day.date > todayString ? true : false}
-          onClick={(e) => onCheckBoxClicked(e, day)}
+        <Grid
+          item
+          xs
+          border={"#7f6751 solid 1px"}
+          backgroundColor={day.completed ? "#0e534e" : ""}
         >
-          <Grid
-            item
-            width={"36px"}
-            height={"40px"}
-            // xs={matches ? 1 : 4}
-            border={"#7f6751 solid 1px"}
-            align={"center"}
-            backgroundColor={day.completed ? "#0e534e" : ""}
-            // backgroundColor={todayString === day.date ? "#0e534e" : "#ded0b9"}
+          <ButtonBase
+            onChange={handleComplete}
+            // checked={day.completed}
+            // disabled={day.completed}
+            value={day.date}
+            disabled={day.date > todayString ? true : false}
+            onClick={(e) => onCheckBoxClicked(e, day)}
+            sx={{
+              width: "100%",
+              height: "100%",
+            }}
           >
-            {/* <Checkbox
+            <Box
+              width={"100%"}
+              height={"100%"}
+              // xs={matches ? 1 : 4}
+              // border={"#7f6751 solid 1px"}
+              align={"center"}
+              backgroundColor={day.completed ? "#0e534e" : ""}
+              // backgroundColor={todayString === day.date ? "#0e534e" : "#ded0b9"}
+            >
+              {/* <Checkbox
               sx={{
                 cursor: "pointer",
                 margin: "2px",
@@ -160,14 +205,15 @@ const Habit = ({ habitId, week }) => {
                 },
               }}
             /> */}
-          </Grid>
-        </ButtonBase>
+            </Box>
+          </ButtonBase>
+        </Grid>
       ))}
       <Grid
         item
-        display={matches ? "" : "none"}
-        // xs={1}
-        width={"60px"}
+        // display={matches ? "" : "none"}
+        xs={matches ? 1 : 3}
+        // width={"60px"}
         borderTop={"#5F4126 solid 1px"}
         borderBottom={"#5F4126 solid 1px"}
         borderLeft={"#5F4126 solid 1px"}
@@ -191,15 +237,15 @@ const Habit = ({ habitId, week }) => {
             fontSize={{ sm: "0.9rem", md: "1rem", lg: "1rem" }}
             color={theme.palette.primary.main}
           >
-            {percent}%
+            {goal}
           </Typography>
         </Box>
       </Grid>
       <Grid
         item
-        display={matches ? "" : "none"}
-        // xs={1}
-        width={"60px"}
+        // display={matches ? "" : "none"}
+        xs={matches ? 1 : 3}
+        // width={"60px"}
         borderTop={"#5F4126 solid 1px"}
         borderBottom={"#5F4126 solid 1px"}
         borderLeft={"#5F4126 solid 1px"}
@@ -207,7 +253,7 @@ const Habit = ({ habitId, week }) => {
         textAlign={"center"}
       >
         <Box
-          width={`${lastMonthPercent}%`}
+          width={`${percent}%`}
           sx={{
             backgroundColor: "green",
             display: "flex",
@@ -219,42 +265,9 @@ const Habit = ({ habitId, week }) => {
             fontSize={{ sm: "0.9rem", md: "1rem", lg: "1rem" }}
             color={theme.palette.primary.main}
           >
-            {lastMonthPercent}%
+            {percent}%
           </Typography>
         </Box>
-      </Grid>
-      <Grid
-        item
-        // display={matches ? "" : "none"}
-        // xs={matches ? 1 : 4}
-        width={"65px"}
-        borderTop={"#5F4126 solid 1px"}
-        borderBottom={"#5F4126 solid 1px"}
-        borderLeft={"#5F4126 solid 1px"}
-        borderRight={"#5F4126 solid 1px"}
-        align="center"
-      >
-        <Button
-          className="bevel-button"
-          sx={{
-            backgroundColor: "#960507",
-            color: "white",
-            cursor: "pointer",
-          }}
-          onClick={onDeleteHabitClicked}
-        >
-          <Typography
-            fontSize={{
-              xs: "0.6rem",
-              sm: "0.7rem",
-              md: "0.8rem",
-              lg: "0.8rem",
-            }}
-          >
-            {" "}
-            DELETE
-          </Typography>
-        </Button>
       </Grid>
     </Grid>
   );

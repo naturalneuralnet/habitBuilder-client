@@ -43,7 +43,7 @@ const MonthInformation = function (year, oneBasedMonth) {
   let nextMonthDay = 1;
   this.dates = [];
   let innermonth = [];
-  for (let i = 4; i < this.totalWeeks * 6; i += 1) {
+  for (let i = 5; i < this.totalWeeks * 6; i += 1) {
     let date;
     /* Previous month dates (if month does not start on Sunday) */
     if (i < this.startDay) {
@@ -70,7 +70,7 @@ const MonthInformation = function (year, oneBasedMonth) {
     innermonth.push({
       today: today,
       date: stringDay,
-      day: `${dayOfWeek} `,
+      day: dayOfWeek + "\xa0",
       fullDate: d,
       lengthOfMonth,
       monthName: longMonth,
@@ -92,7 +92,7 @@ function getDayName() {
   const innerWeek = [];
   // array with just the string date
   const arrayWeek = [];
-  for (let i = 0; i <= 30; i++) {
+  for (let i = 0; i <= 6; i++) {
     /// current Date take away the current day, to get to monday.
     //then add i to get to the day of the week.
     const first = curr.getDate() - curr.getDay() + i;
@@ -117,8 +117,8 @@ function getDayName() {
     });
     arrayWeek.push(d);
   }
-  let answer = new MonthInformation(2023, 12);
-  console.log(answer);
+  // let answer = new MonthInformation(2023, 12);
+  // console.log(answer);
   return innerWeek;
 }
 
@@ -151,7 +151,13 @@ function getToday() {
 }
 
 const NewMonthlyHabit = () => {
-  const matches = useMediaQuery("(min-width:900px)");
+  /// max-width: less than or equal to
+  // min-width: greater than or equal to
+  // if bigger than 1000px then monthly view
+  // if bigger than 800px then weekly view
+  // else day view
+  const matches = useMediaQuery("(min-width:1100px)");
+  const large_match = useMediaQuery("(min-width:1000px)");
   const theme = useTheme();
   const { userId, isAdmin } = useAuth();
   const {
@@ -168,6 +174,9 @@ const NewMonthlyHabit = () => {
     timeStyle: "short",
   }).format(date);
 
+  const stringDate = date.toLocaleString("en-GB");
+  const month = stringDate.slice(3, 5);
+  const year = stringDate.slice(6, 10);
   const currentMonthString = date.toLocaleString("default", { month: "short" });
   date.setMonth(date.getMonth() - 1);
   const previousMonthString = date.toLocaleString("default", {
@@ -175,10 +184,13 @@ const NewMonthlyHabit = () => {
   });
 
   let week;
+
   if (matches) {
     // week = getDayName();
-    week = new MonthInformation(2023, 12);
-    console.log(week);
+    week = new MonthInformation(year, month);
+    //console.log(week);
+  } else if (large_match) {
+    week = getDayName();
   } else {
     week = getToday();
   }
@@ -224,164 +236,215 @@ const NewMonthlyHabit = () => {
   return (
     <>
       <Grid container>
-        <Grid
-          item
-          // xs={matches ? 2 : 4}
-          width={"70px"}
-          sx={{
-            borderTop: "#5F4126 solid 2px",
-            borderBottom: "#5F4126 solid 2px",
-            borderLeft: "#5F4126 solid 2px",
-            borderRight: "#5F4126 solid 2px",
-          }}
-        >
-          <Typography
-            textAlign={"center"}
-            color={theme.palette.primary.main}
-            fontSize={{ xs: "0.5", sm: "0.9rem", md: "1rem", lg: "0.9rem" }}
-          >
-            {/* {today} */}
-            Habits
-          </Typography>
-        </Grid>
-        {week.map((day) => (
+        <Grid container wrap="no-wrap">
           <Grid
             item
-            width={"36px"}
-            // xs={matches ? 1 : 4}
+            xs={large_match ? 1 : 3}
+            // minWidth={{ xs: "40px", sm: "50px", md: "60px", lg: "70px" }}
             sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
               borderTop: "#5F4126 solid 2px",
-              borderBottom: "#5F4126 solid 2px",
+              // borderBottom: "#5F4126 solid 2px",
               borderLeft: "#5F4126 solid 2px",
               borderRight: "#5F4126 solid 2px",
-              backgroundColor: day.date === day.today ? "#0e534e" : "",
             }}
           >
             <Typography
-              fontSize={{ sm: "0.9rem", md: "1rem", lg: "1rem" }}
-              sx={{ color: day.date === day.today ? "white" : "black" }}
+              textAlign={"center"}
+              color={theme.palette.primary.main}
+              fontSize={{ xs: "0.7", sm: "0.8rem", md: "0.9rem", lg: "1rem" }}
             >
-              {day.day}
+              {/* {today} */}
+              {/* Habits */}
             </Typography>
           </Grid>
-        ))}
-        <Grid
-          item
-          display={matches ? "" : "none"}
-          // xs={1}
-          width={"70px"}
-          textAlign={"center"}
-          sx={{
-            borderTop: "#5F4126 solid 2px",
-            borderBottom: "#5F4126 solid 2px",
-            borderLeft: "#5F4126 solid 2px",
-            borderRight: "#5F4126 solid 2px",
-          }}
-        >
-          <Typography
-            fontSize={{ sm: "0.9rem", md: "1rem", lg: "1rem" }}
-            color={"black"}
-          >
-            {/* Goal */}
-            {currentMonthString}
-          </Typography>
-        </Grid>
-        <Grid
-          item
-          display={matches ? "" : "none"}
-          width={"70px"}
-          textAlign={"center"}
-          sx={{
-            borderTop: "#5F4126 solid 2px",
-            borderBottom: "#5F4126 solid 2px",
-            borderLeft: "#5F4126 solid 2px",
-            borderRight: "#5F4126 solid 2px",
-          }}
-        >
-          <Typography
-            fontSize={{ sm: "0.9rem", md: "1rem", lg: "1rem" }}
-            color={"black"}
-          >
-            {/* Achieved */}
-            {previousMonthString}
-          </Typography>
-        </Grid>
-        <Grid
-          item
-          // xs={matches ? 2 : 4}
-          width={"70px"}
-          sx={{
-            borderTop: "#5F4126 solid 2px",
-            borderBottom: "#5F4126 solid 2px",
-            borderLeft: "#5F4126 solid 2px",
-            borderRight: "#5F4126 solid 2px",
-          }}
-        >
-          <Typography
-            textAlign={"center"}
-            color={theme.palette.primary.main}
-            fontSize={{ xs: "0.5", sm: "0.9rem", md: "1rem", lg: "0.9rem" }}
-          >
-            {/* {today} */}
-          </Typography>
-        </Grid>
-        {week.map((day) => (
-          <Grid
-            item
-            width={"36px"}
-            // xs={matches ? 1 : 4}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              borderTop: "#5F4126 solid 2px",
-              borderBottom: "#5F4126 solid 2px",
-              borderLeft: "#5F4126 solid 2px",
-              borderRight: "#5F4126 solid 2px",
-              backgroundColor: day.date === day.today ? "#0e534e" : "",
-            }}
-          >
-            {/* <Typography>{day.day}</Typography> */}
-            <Typography
-              //   label={`$`}
+          {week.map((day) => (
+            <Grid
+              item
+              xs
+              // minWidth={{
+              //   xs: "15px",
+              //   sm: "20px",
+              //   md: "30px",
+              //   lg: "37px",
+              // }}
+              // width={"auto"}
+              // maxWidth={"32px"}
+              // padding={"10px"}
+              // xs={matches ? 1 : 4}
               sx={{
-                backgroundColor: "",
-                fontSize: {
-                  xs: "0.9rem",
-                  sm: "0.9rem",
-                  md: "1rem",
-                  lg: "1rem",
-                },
-                height: "auto",
-                width: "auto",
-                color: day.date === day.today ? "white" : "black",
-                margin: "auto 0px 8px 0px",
-                // "& .MuiChip-label": {
-                //   display: "flex",
-                //   textAlign: "center",
-                // },
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                borderTop: "#5F4126 solid 2px",
+                borderBottom: "#5F4126 solid 2px",
+                borderLeft: "#5F4126 solid 2px",
+                borderRight: "#5F4126 solid 2px",
+                backgroundColor: day.date === day.today ? "#0e534e" : "",
               }}
             >
-              {day.date}
+              <Typography
+                fontSize={{ xs: "0.7", sm: "0.8rem", md: "0.9rem", lg: "1rem" }}
+                sx={{ color: day.date === day.today ? "white" : "black" }}
+              >
+                {day.day}
+              </Typography>
+            </Grid>
+          ))}
+          <Grid
+            item
+            // display={matches ? "" : "none"}
+            xs={large_match ? 1 : 3}
+            // minWidth={{ xs: "40px", sm: "50px", md: "60px", lg: "70px" }}
+            textAlign={"center"}
+            sx={{
+              borderTop: "#5F4126 solid 2px",
+              // borderBottom: "#5F4126 solid 2px",
+              borderLeft: "#5F4126 solid 2px",
+              borderRight: "#5F4126 solid 2px",
+            }}
+          >
+            <Typography
+              fontSize={{ xs: "0.7", sm: "0.8rem", md: "0.9rem", lg: "1rem" }}
+              color={"black"}
+            >
+              {/* Goal */}
+              {/* {currentMonthString} */}
             </Typography>
           </Grid>
-        ))}
+          <Grid
+            item
+            // display={matches ? "" : "none"}
+            xs={large_match ? 1 : 3}
+            // minWidth={{ xs: "40px", sm: "50px", md: "60px", lg: "70px" }}
+            textAlign={"center"}
+            sx={{
+              borderTop: "#5F4126 solid 2px",
+              // borderBottom: "#5F4126 solid 2px",
+              borderLeft: "#5F4126 solid 2px",
+              borderRight: "#5F4126 solid 2px",
+            }}
+          >
+            <Typography
+              fontSize={{ xs: "0.7", sm: "0.8rem", md: "0.9rem", lg: "1rem" }}
+              color={"black"}
+            >
+              {/* Achieved */}
+              {/* {previousMonthString} */}
+            </Typography>
+          </Grid>
+        </Grid>
 
-        <Grid
-          item
-          xs={matches ? 2 : 4}
-          textAlign={"center"}
-          sx={{
-            // borderTop: "#5F4126 solid 2px",
-            // borderBottom: "#5F4126 solid 2px",
-            borderLeft: "#5F4126 solid 2px",
-            borderRight: "#5F4126 solid 2px",
-          }}
-        ></Grid>
+        {/* SECOND GRID */}
+        <Grid container wrap="no-wrap">
+          <Grid
+            item
+            xs={large_match ? 1 : 3}
+            // xs={matches ? 1 : 4}
+
+            // minWidth={{ xs: "40px", sm: "50px", md: "60px", lg: "70px" }}
+            sx={{
+              // borderTop: "#5F4126 solid 2px",
+              borderBottom: "#5F4126 solid 2px",
+              borderLeft: "#5F4126 solid 2px",
+              borderRight: "#5F4126 solid 2px",
+            }}
+          >
+            <Typography
+              textAlign={"center"}
+              color={theme.palette.primary.main}
+              fontSize={{ xs: "0.7", sm: "0.8rem", md: "0.9rem", lg: "1rem" }}
+            >
+              {/* {today} */}
+              Habits
+            </Typography>
+          </Grid>
+
+          {week.map((day) => (
+            <Grid
+              item
+              // padding={"8px"}
+              //
+              xs
+              // xs={matches ? 1 : 4}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                borderTop: "#5F4126 solid 2px",
+                borderBottom: "#5F4126 solid 2px",
+                borderLeft: "#5F4126 solid 2px",
+                borderRight: "#5F4126 solid 2px",
+                backgroundColor: day.date === day.today ? "#0e534e" : "",
+              }}
+            >
+              <Typography
+                //   label={`$`}
+
+                sx={{
+                  fontSize: {
+                    sm: "0.8rem",
+                    md: "0.9rem",
+                    lg: "1rem",
+                  },
+                  // height: "auto",
+                  // width: "auto",
+                  color: day.date === day.today ? "white" : "black",
+                  // margin: "auto 0px 8px 0px",
+                  // "& .MuiChip-label": {
+                  //   display: "flex",
+                  //   textAlign: "center",
+                  // },
+                }}
+              >
+                {day.date}
+              </Typography>
+            </Grid>
+          ))}
+          <Grid
+            item
+            // display={matches ? "" : "none"}
+            xs={large_match ? 1 : 3}
+            // minWidth={{ xs: "40px", sm: "50px", md: "60px", lg: "70px" }}
+            textAlign={"center"}
+            sx={{
+              // borderTop: "#5F4126 solid 2px",
+              borderBottom: "#5F4126 solid 2px",
+              borderLeft: "#5F4126 solid 2px",
+              borderRight: "#5F4126 solid 2px",
+            }}
+          >
+            <Typography
+              fontSize={{ xs: "0.7", sm: "0.8rem", md: "0.9rem", lg: "1rem" }}
+              color={"black"}
+            >
+              Goal
+              {/* {currentMonthString} */}
+            </Typography>
+          </Grid>
+          <Grid
+            item
+            // display={matches ? "" : "none"}
+            xs={large_match ? 1 : 3}
+            // minWidth={{ xs: "40px", sm: "50px", md: "60px", lg: "70px" }}
+            textAlign={"center"}
+            sx={{
+              // borderTop: "#5F4126 solid 2px",
+              borderBottom: "#5F4126 solid 2px",
+              borderLeft: "#5F4126 solid 2px",
+              borderRight: "#5F4126 solid 2px",
+            }}
+          >
+            <Typography
+              fontSize={{ xs: "0.7", sm: "0.8rem", md: "0.9rem", lg: "1rem" }}
+              color={"black"}
+            >
+              Achieved (%)
+              {/* {currentMonthString} */}
+            </Typography>
+          </Grid>
+        </Grid>
       </Grid>
+
       {content}
     </>
   );
